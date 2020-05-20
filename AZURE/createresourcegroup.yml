@@ -1,0 +1,22 @@
+---
+  - name: Create Azure Resource Group
+    hosts: localhost
+    connection: local
+    gather_facts: no
+    vars:
+       az_rgname: ''
+       location: ''
+       customer: ''
+       AZURE_CLIENT_ID: ''
+       AZURE_SECRET: ''
+       AZURE_SUBSCRIPTION_ID: ''
+       AZURE_TENANT: ''
+    tasks:
+      - name: Create a resource group {{az_rgname}}
+        azure_rm_resourcegroup:
+          name: "{{az_rgname}}"
+          location: "{{location}}"
+          tags:
+            created: ansbile
+            delete: never
+            demo: "{{customer}}"
