@@ -2,6 +2,9 @@
 - name: Action for specific service
   hosts: all
   gather_facts: False
+  vars:
+    service_action: ''
+    service_name: ''
 
   tasks:
     - name: Ansible Tower "{{ service_action }}" "{{ service_name }}" services
