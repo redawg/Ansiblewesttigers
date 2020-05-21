@@ -7,7 +7,7 @@
     service_name: ''
 
   tasks:
-    - name: Ansible Tower  {{ service_action }} {{ service_name }} services
+    - name: Ansible Tower "{{ service_action }}"  "{{ service_name }}" services
       service:
-        name: {{ service_name }}
-        state: {{ service_action }}
+        name: "{{ service_name }}"
+        state: "{{ service_action }}"
