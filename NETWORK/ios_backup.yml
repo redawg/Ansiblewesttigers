@@ -1,8 +1,17 @@
 ---
-- name: Backup the config
-  ios_config:
-    backup: yes
-    backup_options:
-      dir_path: "{{backup_path}}"
-      filename: "{{inventory_hostname}}.cfg"
-  register: config_output
+- name: Start Backup of ios Devices
+  hosts: all
+  gather_facts: false
+  vars:
+    ansible_connection: ''
+    ansible_network_os: ''
+    backup_path: ''
+
+  tasks:
+  - name: Backup the config of {{inventory_hostname}} to {{backup_path}}
+    ios_config:
+      backup: yes
+      backup_options:
+        dir_path: "{{backup_path}}"
+        filename: "{{inventory_hostname}}.cfg"
+    register: config_output
