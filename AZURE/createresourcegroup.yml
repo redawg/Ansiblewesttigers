@@ -7,10 +7,10 @@
        az_rgname: ''
        location: ''
        customer: ''
-       AZURE_CLIENT_ID: ''
-       AZURE_SECRET: ''
-       AZURE_SUBSCRIPTION_ID: ''
-       AZURE_TENANT: ''
+       AZURE_CLIENT_ID: ''       # passed from Ansible Tower Credentials
+       AZURE_SECRET: ''          # passed from Ansible Tower Credentials
+       AZURE_SUBSCRIPTION_ID: '' # passed from Ansible Tower Credentials
+       AZURE_TENANT: ''          # passed from Ansible Tower Credentials
     tasks:
       - name: Create a resource group {{az_rgname}}
         azure_rm_resourcegroup:

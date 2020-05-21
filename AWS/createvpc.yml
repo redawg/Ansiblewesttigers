@@ -4,8 +4,8 @@
     connection: local
     gather_facts: no
     vars:
-       aws_access_key: ''
-       aws_secret_key: ''
+       aws_access_key: ''      # passed from Ansible Tower Credentials
+       aws_secret_key: ''      # passed from Ansible Tower Credentials
        vpc_name: ''
        vpc_cidr: ''
        region: ''
@@ -101,7 +101,7 @@
         tags:
           Name: "{{ ec2_rt_name }}"
           Createdby: Ansible Tower
-          
+
         subnets:
           - "{{ my_vpc_subnet.subnet.id }}"
         routes:
