@@ -7,7 +7,7 @@ Format:
 Playbooks should define blank Varables that are needed for the Playbook to run successfully. These variable should be passed to the playbook from Tower Surveys or extra Vars in templates.  Any variable that is pulled from Ansible facts should be commented as such
 
 Example.
-vars:
+vars:  /n
     az_rgname: ''
     location: ''
     customer: ''
