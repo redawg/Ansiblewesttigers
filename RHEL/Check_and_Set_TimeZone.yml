@@ -2,8 +2,7 @@
 - hosts: all
   gather_facts: False
   connection: local
-  become: yes
-  become_user: root
+  
 
   tasks:
       - name: Check TimeZone 
