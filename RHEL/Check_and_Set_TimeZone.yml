@@ -1,10 +1,12 @@
 ---
 - hosts: all
+  gather_facts: False
+  connection: local
   become: yes
-  become_user: sudo
+  become_user: root
 
   tasks:
-      - name: Check TimeZone for device {{ ipv4_host }} 
+      - name: Check TimeZone 
         shell: timedatectl | grep -i 'time zone'| awk '{ print $3}'
         register: TimeZoneOUT
       - debug: msg={{TimeZoneOUT.stdout}}
