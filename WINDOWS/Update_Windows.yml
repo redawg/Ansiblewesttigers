@@ -12,7 +12,7 @@
         - debug:
             var: update_count
 
-        - name: install all windows updates
+        - name: Install all windows updates
           win_updates:
             category_names:
               - CriticalUpdates

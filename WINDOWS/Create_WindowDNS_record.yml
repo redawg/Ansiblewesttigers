@@ -10,4 +10,4 @@
   tasks:  
    - name: Add A record for newly build server
      win_shell: "Add-DnsServerResourceRecordA -Name {{Server_hostname}} -ZoneName {{DNS_domain}} -AllowUpdateAny -IPv4Address {{IPAddress}} -TimeToLive 01:00:00"
-     when: DOMAIN == "{{DNS_Domain}}" 
+     when: DOMAIN == "{{DNS_Domain}}"
