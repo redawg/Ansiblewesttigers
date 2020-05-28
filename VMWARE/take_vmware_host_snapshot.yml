@@ -1,6 +1,6 @@
 ---
 - name: Take VMWare host snapshot
-  hosts: all
+  hosts: vmwarehost
   vars:
     guest_name: ''
     vcenter_hostname: ''
