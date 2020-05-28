@@ -1,0 +1,13 @@
+---
+- name: Backup MySQL DBs
+  hosts: mysql
+  gather_facts: false
+  vars:
+    file_name: ''
+    db_name: '' # type "all" to back them all
+
+- name: Dump all databases to {{ file_name }}.sql
+  mysql_db:
+    state: dump
+    name: {{ db_name }}
+    target: /tmp/{{ file_name }}.sql
