@@ -1,0 +1,25 @@
+---
+- name: Take VMWare host snapshot
+  hosts: all
+  vars:
+    guest_name: ''
+    vcenter_hostname: ''
+    vcenter_username: ''
+    vcenter_password: ''
+    datacenter_name: ''
+    snapshot_name: ''
+    snapshot_description: ''
+    
+  tasks:
+    - name: Create {{ guest_name }} snapshot
+      vmware_guest_snapshot:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        datacenter: "{{ datacenter_name }}"
+        folder: "/{{ datacenter_name }}/vm/"
+        name: "{{ guest_name }}"
+        state: present
+        snapshot_name: {{ snapshot_name }}
+        description: {{ snapshot_description }}
+      delegate_to: localhost
