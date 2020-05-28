@@ -1,0 +1,9 @@
+---
+- name: Search and download Windows updates
+  hosts: all
+  gather_facts: false
+
+  tasks:
+  - name: Search and download Windows updates without installing them
+    win_updates:
+      state: downloaded
