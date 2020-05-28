@@ -1,5 +1,5 @@
 ---
-- name: Install IIS.
+- name: Install IIS
   hosts: all
 
   tasks:
