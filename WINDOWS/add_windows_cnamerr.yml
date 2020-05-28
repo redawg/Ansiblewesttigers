@@ -1,0 +1,16 @@
+---
+- name: Register CNAME DNS record on Windows DNS server
+  hosts: DNSServername
+  gather_facts: False
+  vars:
+    device_hostname: ''
+    target_hostname: ''
+    DNS_domain: ''
+
+  tasks:
+  - name: Create database CNAME hostname alias
+    win_dns_record:
+      name: {{ device_hostname }}
+      type: "CNAME"
+      value: {{ target_hostname }}
+      zone: {{ DNS_domain }}
