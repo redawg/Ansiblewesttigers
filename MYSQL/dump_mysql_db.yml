@@ -6,8 +6,9 @@
     file_name: ''
     db_name: '' # type "all" to restore them all
 
-- name: Dump database from {{ file_name }}.sql
-  mysql_db:
-    name: {{ db_name }}
-    state: dump
-    target: /tmp/{{ file_name }}.sql
+  tasks:
+    - name: Dump database from {{ file_name }}.sql
+      mysql_db:
+        name: {{ db_name }}
+        state: dump
+        target: /tmp/{{ file_name }}.sql

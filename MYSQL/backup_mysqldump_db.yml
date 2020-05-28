@@ -1,0 +1,12 @@
+---
+- name: Backup MySQL DBsusing shell and mysqlbackup
+  hosts: mysql
+  gather_facts: false
+  vars:
+    mysql_options: '--login-path=backup --read-threads=8 --process-threads=4 --write-threads=8 --number-of-buffers=28'
+    backup_image: '--backup-image=/root/backup/`date +"%m-%d-%y_%H:%M"`/full_backup.mbi'
+    backup_dir: '--backup-dir=/root/backup/`date +"%m-%d-%y_%H:%M"`'
+
+  tasks:
+    - name: Backup MySQL DB to {{ backup_image }} file
+      shell: mysqlbackup {{ mysql_options }} {{ backup_image }} {{ backup_dir }} backup-to-image
