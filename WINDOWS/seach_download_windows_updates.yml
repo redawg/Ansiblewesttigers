@@ -1,5 +1,5 @@
 ---
-- name: Search and download Windows updates
+- name: Search and download Windows updates.
   hosts: all
   gather_facts: false
 
