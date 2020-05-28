@@ -1,0 +1,11 @@
+---
+- name: Search SecurityUpdates.
+  hosts: all
+  gather_facts: false
+
+  tasks:
+  - name: Search-only, return list of found updates (if any), log to C:\ansible_wu.txt
+    win_updates:
+      category_names: SecurityUpdates
+      state: searched
+      log_path: C:\ansible_wu.txt

@@ -1,5 +1,5 @@
 ---
-- name: Register DNS record on Windows DNS server
+- name: Register DNS record on Windows DNS server.
   hosts: DNSServername
   gather_facts: False
   vars:
