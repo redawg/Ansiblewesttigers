@@ -10,7 +10,7 @@
     ansible_host: ''
     ansible_user: ''
     ansible_ssh_pass: ''
-    groups: ''
+    group_tag: ''
     tcp_port: '' # Must use 443 for on-prem, 8443 for public cloud
     state: ''    # Present of absent
 
@@ -25,5 +25,5 @@
       host: "{{hostvars[item].ansible_host}}"
       state: "{{state}}"
       name: "{{hostvars[item].inventory_hostname}}"
-    loop: "{{ groups['{{groups}}'] }}" # Tags to identify nodes in public cloud
+    loop: "{{ groups['{{group_tag}}'] }}" # Tags to identify nodes in public cloud
 
