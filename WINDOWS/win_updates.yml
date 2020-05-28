@@ -1,0 +1,9 @@
+---
+- name: This is my Windows patching playbook that require Ansible Survey
+  hosts: windows
+
+  tasks:
+    - name: Install Windows Updates
+      win_updates:
+        category_names: "{{ categories | default(omit) }}"
+        reboot: '{{ reboot_server | default(yes) }}'
