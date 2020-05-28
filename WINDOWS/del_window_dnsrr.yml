@@ -1,5 +1,5 @@
 ---
-- name: Delete DNS record on Windows DNS server.
+- name: Delete DNS record on Windows DNS server
   hosts: DNSServername
   gather_facts: False
   vars:
