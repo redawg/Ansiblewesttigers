@@ -1,0 +1,14 @@
+---
+- name: Restore MySQL DBs using shell and mysqlbackup
+  hosts: mysql
+  gather_facts: false
+  vars:
+    mysql_conf: '--defaults-file=/etc/my.cnf'
+    mysql_options: '--read-threads=8 --process-threads=8 --write-threads=4 --number-of-buffers=28'
+    backup_dir: '--backup-dir=/mnt/oradumps/MySQL/backups/BICS-restore-temp'
+    backup_image: '--backup-image=/mnt/oradumps/MySQL/backups/05162020/my.mbi'
+    data_dir: '--datadir=/var/lib/mysql'
+
+  tasks:
+    - name: Restore MySQL DB to {{ backup_image }} file
+      shell: mysqlbackup {{ mysql_conf }} {{ mysql_options }} {{ backup_dir }} {{ backup_image }} {{ data_dir }} copy-back-and-apply-log
