@@ -1,8 +1,10 @@
+---
 - name: Test simple powershell module - get OS version and test for minimum desired version
   hosts: windows
+  gather_facts: False
 
   tasks:
-    - name: simple powershell module example to get Windows OS version 
+    - name: Simple powershell module example to get Windows OS version
       get_version:
         major: "9"
         minor: "1"
