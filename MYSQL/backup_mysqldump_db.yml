@@ -1,5 +1,5 @@
 ---
-- name: Backup MySQL DBs using shell and mysqlbackup
+- name: Backup MySQL DBs using shell and mysqlbackup.
   hosts: mysql
   gather_facts: false
   vars:
