@@ -9,7 +9,7 @@
 
 tasks:
 
-  - name: ENSURE THAT THE DESIRED SNMP STRINGS ARE PRESENT
+  - name: ENSURE THAT THE DESIRED SNMP STRINGS ARE PRESENT 
     ios_config:
       commands:
         - snmp-server community "{{ snmp_ro_community }}" RO
