@@ -9,7 +9,7 @@
       - 3.3.3.3
 
   tasks:
-   - name: Get current NTP server
+   - name: Get current NTP server 
      cli_command:
        command: show run | inc ntp
      register: output
