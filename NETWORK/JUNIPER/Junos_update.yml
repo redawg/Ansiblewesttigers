@@ -1,0 +1,45 @@
+---
+- name: Install Junos OS - Install Juniper.junos Galaxy first! "sudo ansible-galaxy install Juniper.junos"
+  hosts: juno1
+  roles:
+    - Juniper.junos 
+  connection: local
+  gather_facts: false
+  
+  vars:
+    OS_version: "17.3R1.10"
+    OS_package: "jinstall-ppc-17.3R1.10-signed.tgz"
+    pkg_dir: "software"
+    log_dir: "/var/log/ansible"
+    netconf_port: 830
+    wait_time: 3600
+
+  tasks:
+    - name: Checking NETCONF connectivity
+      wait_for: 
+        host: "{{ inventory_hostname }}" 
+        port: "{{ netconf_port }}"
+        timeout: 5
+
+    - name: Install Junos OS package
+      juniper_junos_software:
+        version: "{{ OS_version }}"
+        local_package: "{{ pkg_dir }}/{{ OS_package }}"
+        reboot: true
+        validate: true
+        logfile: "{{ log_dir }}/software.log"
+      register: sw
+      notify:
+      - wait_reboot
+
+    - name: Print response
+      debug:
+        var: response
+
+  handlers:
+    - name: wait_reboot
+      wait_for: 
+        host: "{{ inventory_hostname }}"
+        port: "{{ netconf_port }}"
+        timeout: "{{ wait_time }}"
+      when: not sw.check_mode
