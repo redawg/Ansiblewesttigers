@@ -15,7 +15,7 @@
     wait_time: 3600
 
   tasks:
-    - name: Checking NETCONF connectivity
+    - name: Checking NETCONF connectivity 
       wait_for: 
         host: "{{ ansible_hostname }}" 
         port: "{{ netconf_port }}"
