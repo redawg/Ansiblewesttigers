@@ -4,7 +4,7 @@
   roles:
     - Juniper.junos 
   connection: local
-  gather_facts: no
+  gather_facts: false
 
   tasks:
     - name: Checking NETCONF connectivity
