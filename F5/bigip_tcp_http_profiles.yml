@@ -1,0 +1,37 @@
+---
+- name: Creating profiles
+  hosts: lb
+  connection: local
+  gather_facts: false
+
+  tasks:
+
+    - name: Creating TCP profile
+      bigip_profile_tcp:
+        name: "{{tcp_profile_name}}"
+        parent: tcp
+        time_wait_recycle: no
+        idle_timeout: 300
+        state: "{{state}}"
+        provider:
+          user: "{{ansible_user}}"
+          password: "{{ansible_ssh_pass}}"
+          server: "{{ansible_host}}"
+          server_port: 8443
+          validate_certs: false
+      delegate_to: localhost
+      
+    - name: Create HTTP profile
+      bigip_profile_http:
+        name: "{{http_profile_name}}"
+        parent: http
+        insert_xforwarded_for: yes
+        redirect_rewrite: all
+        state: "{{state}}"
+        provider:
+          user: "{{ansible_user}}"
+          password: "{{ansible_ssh_pass}}"
+          server: "{{ansible_host}}"
+          server_port: 8443
+          validate_certs: false
+      delegate_to: localhost  
