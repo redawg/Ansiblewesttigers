@@ -1,0 +1,23 @@
+---
+- name: BIG-IP SETUP
+  hosts: lb
+  connection: local
+  gather_facts: false
+
+  tasks:
+
+  - name: ADD POOL MEMBERS
+    bigip_pool_member:
+      provider:
+        server: "{{ansible_host}}"
+        user: "{{ansible_user}}"
+        password: "{{ansible_ssh_pass}}"
+        server_port: 8443
+        validate_certs: false
+      state: "{{state}}"
+      name: "{{hostvars[item].inventory_hostname}}"
+      host: "{{hostvars[item].ansible_host}}"
+      port: "8080"
+      pool: "http_pool"
+    #loop: "{{ groups['tag_ansible_group_jboss'] }}"
+    loop: "{{ groups['tag_Name_mlowcher_jboss_demo'] }}"
