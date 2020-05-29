@@ -1,0 +1,16 @@
+---
+- name: SNMP RO/RW STRING CONFIGURATION
+  hosts: cisco
+  gather_facts: false
+  connection: network_cli
+  vars:
+    snmp_ro_community: 'ansible-public'
+    snmp_rw_community: 'ansible-private'
+
+tasks:
+
+  - name: ENSURE THAT THE DESIRED SNMP STRINGS ARE PRESENT
+    ios_config:
+      commands:
+        - snmp-server community "{{ snmp_ro_community }}" RO
+        - snmp-server community "{{ snmp_rw_community }}" RW
