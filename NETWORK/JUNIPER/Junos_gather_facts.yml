@@ -7,7 +7,7 @@
   gather_facts: false
 
   tasks:
-    - name: Checking NETCONF connectivity
+    - name: Checking NETCONF connectivity.
       wait_for: 
         host: "{{ ansible_hostname }}"
         port: 830 
