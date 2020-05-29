@@ -3,7 +3,7 @@
   hosts: juno1
   roles:
     - Juniper.junos 
-  connection: local
+  connection: network_cli
   gather_facts: false
 
   tasks:
