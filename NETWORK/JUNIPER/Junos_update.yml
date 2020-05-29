@@ -17,7 +17,7 @@
   tasks:
     - name: Checking NETCONF connectivity
       wait_for: 
-        host: "{{ inventory_hostname }}" 
+        host: "{{ ansible_hostname }}" 
         port: "{{ netconf_port }}"
         timeout: 5
 
@@ -39,7 +39,7 @@
   handlers:
     - name: wait_reboot
       wait_for: 
-        host: "{{ inventory_hostname }}"
+        host: "{{ ansible_hostname }}"
         port: "{{ netconf_port }}"
         timeout: "{{ wait_time }}"
       when: not sw.check_mode

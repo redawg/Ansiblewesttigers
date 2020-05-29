@@ -9,13 +9,13 @@
   tasks:
     - name: Checking NETCONF connectivity
       wait_for: 
-        host: "{{ inventory_hostname }}"
+        host: "{{ ansible_hostname }}"
         port: 830 
         timeout: 5
 
     - name: Retrieving information from devices running Junos OS
       juniper_junos_facts:
-        host: "{{ inventory_hostname }}"
+        host: "{{ ansible_hostname }}"
 
     - name: Print version
       debug:
