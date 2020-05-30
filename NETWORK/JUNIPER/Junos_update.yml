@@ -3,7 +3,7 @@
   hosts: juno1
   roles:
     - Juniper.junos 
-  connection: local
+  connection: network_cli
   gather_facts: false
   
   vars:
@@ -27,7 +27,7 @@
         local_package: "{{ pkg_dir }}/{{ OS_package }}"
         reboot: true
         validate: true
-        logfile: "{{ log_dir }}/software.log"
+        logfile: "{{ log_dir }}/Junos_software_update.log"
       register: sw
       notify:
       - wait_reboot
@@ -35,6 +35,21 @@
     - name: Print response
       debug:
         var: response
+
+#    - name: Send Emails to a user, with Playbook Report as an attachment.
+#      mail:
+#        host: localhost
+#        port: 25
+#        subject: JunOS update Ansible Playbook Report
+#        body: Hi There!, this is an Email generated using Ansible after execution of JunOS update.
+#        from: from-email@domain (Ansible Automates)
+#        to:
+#        - to-email-name-1 <to-email-1@domain>
+#        - to-email-name-2 <to-email-1@domain>
+#        attach:
+#        - "{{ log_dir }}/Junos_software_update.log"
+#        charset: us-ascii
+#      delegate_to: localhost
 
   handlers:
     - name: wait_reboot
