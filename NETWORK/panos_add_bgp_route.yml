@@ -17,18 +17,18 @@
     ip_address: '{{ ansible_host }}'
 
   tasks:
-#  - name: Grab the credentials from ansible-vault
-#    include_vars: 'firewall-secrets.yml'
-#    no_log: 'yes'
+  #  - name: Grab the credentials from ansible-vault
+  #    include_vars: 'firewall-secrets.yml'
+  #    no_log: 'yes'
 
-  - name: Configure BGP on a Virtual Router
-    panos_bgp:
-      ip_address: '{{ firewall_host }}'
-      username: '{{ pan_username }}'
-      password: '{{ pan_password }}'
-      state: present
-      vr_name: default
-      enable: false
-      router_id: '{{ router_id }}'
-      local_as: '{{ asnumber }}'
-      commit: true
+    - name: Configure BGP on a Virtual Router
+      panos_bgp:
+        ip_address: '{{ firewall_host }}'
+        username: '{{ pan_username }}'
+        password: '{{ pan_password }}'
+        state: present
+        vr_name: default
+        enable: false
+        router_id: '{{ router_id }}'
+        local_as: '{{ asnumber }}'
+        commit: true

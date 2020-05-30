@@ -1,0 +1,27 @@
+---
+- name: Add vlan to Arista switch # make sure Arista.eos galaxy it's in place
+  hosts: myeos
+  gather_facts: false
+  connection: network_cli
+  vars:
+    eos_username: ''
+    eos_password: ''
+    eos_transport: ''
+    eos_vlanid: ''
+    eos_vlan_name: ''
+
+  roles:
+    - arista.eos
+
+  tasks:
+    - name: configures vlan {{ eos_vlan_name }}
+      eos_vlan:
+        vlanid={{ eos_vlanid }}
+        name={{ eos_vlan_name }}
+        transport={{ eos_transport }}
+        username={{ eos_username }}
+        password={{ eos_password }}
+        debug=yes
+      register: vlan_cfg_output
+
+    - debug: var=vlan_cfg_output
