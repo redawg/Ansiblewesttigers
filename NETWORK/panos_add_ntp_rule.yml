@@ -1,6 +1,6 @@
 ---
 - name: Palo Alto Panorama Panos_Security_rule module
-  hosts: pan
+  hosts: panos
   gather_facts: False
   connection: network_cli
   vars:
