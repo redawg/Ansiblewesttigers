@@ -4,16 +4,16 @@
   gather_facts: False
   connection: network_cli
   vars:
-    pan_username: ''
-    pan_password: ''
-    firewall_host: ''
+    pan_username: ""
+    pan_password: ""
+    firewall_host: ""
 
   tasks:
     - name: Add an NTP inbound rule to WEST_DC
       panos_security_rule:
-        ip_address: '{{ firewall_host }}'
-        username: '{{ pan_username }}'
-        password: '{{ pan_password }}'
+        ip_address: "{{ firewall_host }}"
+        username: "{{ pan_username }}"
+        password: "{{ pan_password }}"
         operation: 'add'
         rule_name: 'NTP permit'
         description: 'Allow_NTP_Traffic'
