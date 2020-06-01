@@ -10,7 +10,7 @@
     datacenter_name: ""
     sample_vm_folder: ""
     vm_folder_type: ""
-    state: ""
+    vm_folder_state: ""
 
   tasks:
   - name: Create a VM folder on given datacenter
@@ -21,6 +21,6 @@
       datacenter: "{{ datacenter_name }}"
       folder_name: "{{ sample_vm_folder }}"
       folder_type: "{{ vm_folder_type }}"
-      state: "{{ state }}"
+      state: "{{ vm_folder_state }}"
     register: vm_folder_creation_result
     delegate_to: localhost
