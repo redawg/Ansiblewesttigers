@@ -30,6 +30,10 @@
         #cluster: Cluster01
         # cluster and esxi_hostname are mutually exclusive. cluster was giving me an error
         esxi_hostname: "{{ esxi_server }}"
+        disk:
+        - size_gb: 20
+          type: thin
+          datastore: usb-stick
         datacenter: "{{ DC_name }}"
         folder: ansiblevms
         customization:

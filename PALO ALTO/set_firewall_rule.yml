@@ -1,0 +1,51 @@
+
+# DESCRIPTION
+# Example playbook that will connect to the firewall and set a simple security rule.
+#
+# REQUIREMENTS
+# ansible version 2.9+
+# ansible-galaxy install PaloAltoNetworks.paloaltonetworks
+---
+- hosts: localhost
+  connection: local
+  gather_facts: "False"
+  vars:
+    mgmt_ip: ''
+    admin_password: ''
+    nat_rule_name: ''
+    dest_ip: ''
+
+  roles:
+    - role: PaloAltoNetworks.paloaltonetworks
+
+  tasks: 
+
+    - name: Create NAT rule for Web server
+      panos_nat_rule:
+        ip_address: "{{ mgmt_ip }}"
+        password: "{{admin_password}}"
+        operation: 'update'
+        rule_name: "{{ nat_rule_name }}"
+        source_zone: ["untrust"]
+        destination_zone: "untrust"
+        source_ip: ["any"]
+        destination_ip: ["{{ dest_ip }}"]
+        service: "service-http"
+        snat_type: "dynamic-ip-and-port"
+        snat_interface: "ethernet1/2"
+        dnat_address: "10.0.1.101"
+        dnat_port: "80"
+        commit: "False"
+
+    - name: add a rule to allow HTTP on custom port
+      panos_security_rule:
+        ip_address: "{{ mgmt_ip }}"
+        password: "{{admin_password}}"
+        operation: 'update'
+        rule_name: "{{ port_rule_name }}" # Such as 'Web-traffic'
+        service: 'service-http'
+        description: 'Allow HTTP traffic on custom port'
+        source_zone: ['untrust']
+        destination_zone: ['trust']
+        action: 'allow'
+        commit: "True"
