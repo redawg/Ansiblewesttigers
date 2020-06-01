@@ -4,7 +4,7 @@
   gather_facts: false
 
   tasks:
-  - name: Search-only, return list of found updates (if any), log to C:\ansible_wu.txt
+  - name: Search-only, return list of found updates (if any), log to C:\ansible_wu.txt 
     win_updates:
       category_names: SecurityUpdates
       state: searched

@@ -1,0 +1,22 @@
+---
+- name: Get Device Facts - Install Juniper.junos Galaxy first! "sudo ansible-galaxy install Juniper.junos"
+  hosts: juno1
+  roles:
+    - Juniper.junos 
+  connection: network_cli
+  gather_facts: false
+
+  tasks:
+    - name: Checking NETCONF connectivity.
+      wait_for: 
+        host: "{{ ansible_hostname }}"
+        port: 830 
+        timeout: 5
+
+    - name: Retrieving information from devices running Junos OS
+      juniper_junos_facts:
+        host: "{{ ansible_hostname }}"
+
+    - name: Print version
+      debug:
+        var: junos.version

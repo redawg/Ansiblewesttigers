@@ -1,0 +1,36 @@
+---
+- name: Palo Alto Panorama Panos_Security_rule module 
+  hosts: panos
+  gather_facts: False
+  connection: network_cli
+  vars:
+    pan_username: ''
+    pan_password: ''
+    firewall_host: ''
+
+  tasks:
+    - name: Add an NTP inbound rule to WEST_DC
+      panos_security_rule:
+        ip_address: '{{ firewall_host }}'
+        username: '{{ pan_username }}'
+        password: '{{ pan_password }}'
+        operation: 'add'
+        rule_name: 'NTP permit'
+        description: 'Allow_NTP_Traffic'
+        tag_name: ['Inside-Inside']
+        source_zone: ['inside']
+        source_ip: ['any']
+        destination_zone: ['private']
+        source_ip: ['any']
+        source_user: ['any']
+        destination_zone: ['outside']
+        destination_ip: ['any']
+        category: ['any']
+        service: ['application-default']
+        application: ['ntp']
+        hip_profiles: ['any']
+        action: 'allow'
+        devicegroup: 'WEST_DC'
+
+    - debug:
+        var: result

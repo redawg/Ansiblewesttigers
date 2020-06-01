@@ -1,0 +1,10 @@
+---
+- name: Test cmd from win_command module
+  hosts: mywindows
+  gather_facts: False
+
+  tasks:
+    - name: Run netstat and return Ethernet stats to variable.
+      win_command: netstat -e
+      register: netstat
+    - debug: var=netstat
