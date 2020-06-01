@@ -4,31 +4,31 @@
   connection: network_cli
   gather_facts: False
   vars:
-    pan_username: ''
-    pan_password: ''
-    firewall_host: ''
-    router_id: ''
-    asnumber: ''
+    pan_username: ""
+    pan_password: ""
+    firewall_host: ""
+    router_id: ""
+    asnumber: ""
 
   roles:
     - role: PaloAltoNetworks.paloaltonetworks
 
   vars:
-    ip_address: '{{ ansible_host }}'
+    ip_address: "{{ ansible_host }}"
 
   tasks:
   #  - name: Grab the credentials from ansible-vault
-  #    include_vars: 'firewall-secrets.yml'
-  #    no_log: 'yes'
+  #    include_vars: "firewall-secrets.yml"
+  #    no_log: "yes"
 
     - name: Configure BGP on a Virtual Router
       panos_bgp:
-        ip_address: '{{ firewall_host }}'
-        username: '{{ pan_username }}'
-        password: '{{ pan_password }}'
+        ip_address: "{{ firewall_host }}"
+        username: "{{ pan_username }}"
+        password: "{{ pan_password }}"
         state: present
         vr_name: default
         enable: false
-        router_id: '{{ router_id }}'
-        local_as: '{{ asnumber }}'
+        router_id: "{{ router_id }}"
+        local_as: "{{ asnumber }}"
         commit: true
