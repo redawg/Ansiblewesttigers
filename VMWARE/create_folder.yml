@@ -4,21 +4,23 @@
   connection: local
   gather_facts: no
   vars:
-    vcenter_hostname: ''
-    vcenter_username: ''
-    vcenter_password: ''
-    datacenter_name: ''
-    state: ''
+    vcenter_hostname: ""
+    vcenter_username: ""
+    vcenter_password: ""
+    datacenter_name: ""
+    sample_vm_folder: ""
+    vm_folder_type: ""
+    state: ""
 
   tasks:
   - name: Create a VM folder on given datacenter
     vcenter_folder:
-      hostname: '{{ vcenter_hostname }}'
-      username: '{{ vcenter_username }}'
-      password: '{{ vcenter_password }}'
-      datacenter: '{{ datacenter_name }}'
-      folder_name: sample_vm_folder
-      folder_type: vm
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      datacenter: "{{ datacenter_name }}"
+      folder_name: "{{ sample_vm_folder }}"
+      folder_type: "{{ vm_folder_type }}"
       state: "{{ state }}"
     register: vm_folder_creation_result
     delegate_to: localhost
