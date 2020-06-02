@@ -10,8 +10,8 @@
   tasks:
   - name: Add static ANAME record
     win_dns_record:
-      name: {{ device_hostname }}
+      name: "{{ device_hostname }}"
       type: "A"
-      value: {{ IPAddress }}
+      value: "{{ IPAddress }}"
       state: present
-      zone: {{ DNS_domain }}
+      zone: "{{ DNS_domain }}"

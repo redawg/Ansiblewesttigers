@@ -1,5 +1,5 @@
 ---
-- name: Start Backup of ios Devices
+- name: Run _show_ command on IOS
   hosts: myeos
   gather_facts: false
   connection: network_cli
@@ -7,21 +7,21 @@
   become: yes
   become_method: enable
   vars:
-    arista_running: 'show running-config interfaces ethernet'
-    arista_mlag: 'show mlag interfaces'
-    arista_port_channel: 'show running-config interfaces Port-Channel'
-    ethernet_number: ''
-    eos_username: ''
-    eos_passord: ''
+    arista_running: "show running-config interfaces ethernet"
+    arista_mlag: "show mlag interfaces"
+    arista_port_channel: "show running-config interfaces Port-Channel"
+    ethernet_number: ""
+    eos_username: ""
+    eos_passord: ""
 
   tasks:
-    - name: Show runnin-config interfaces for specific ethernet '{{ arista_command }}'
+    - name: Show runnin-config interfaces for specific ethernet "{{ arista_command }}"
       eos_command:
-        username: '{{ eos_username }}'
-        password: '{{ eos_password }}'
+        username: "{{ eos_username }}"
+        password: "{{ eos_password }}"
         commands:
           # - 'show interface status'
-          - '{{ arista_running }} {{ ethernet_number }}'
-          - '{{ arista_mlag }} {{ ethernet_number }}'
-          - '{{ arista_port_channel}} {{ ethernet_number }}'
+          - "{{ arista_running }} {{ ethernet_number }}"
+          - "{{ arista_mlag }} {{ ethernet_number }}"
+          - "{{ arista_port_channel}} {{ ethernet_number }}"
       register: ipbrief

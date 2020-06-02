@@ -4,23 +4,23 @@
   gather_facts: false
   connection: network_cli
   vars:
-    eos_username: ''
-    eos_password: ''
-    eos_transport: ''
-    eos_vlanid: ''
-    eos_vlan_name: ''
+    eos_username: ""
+    eos_password: ""
+    eos_transport: ""
+    eos_vlanid: ""
+    eos_vlan_name: ""
 
   roles:
     - arista.eos
 
   tasks:
-    - name: configures vlan {{ eos_vlan_name }}
+    - name: configures vlan "{{ eos_vlan_name }}"
       eos_vlan:
-        vlanid={{ eos_vlanid }}
-        name={{ eos_vlan_name }}
-        transport={{ eos_transport }}
-        username={{ eos_username }}
-        password={{ eos_password }}
+        vlanid="{{ eos_vlanid }}"
+        name="{{ eos_vlan_name }}"
+        transport="{{ eos_transport }}"
+        username="{{ eos_username }}"
+        password="{{ eos_password }}"
         debug=yes
       register: vlan_cfg_output
 
