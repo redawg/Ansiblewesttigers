@@ -34,7 +34,7 @@
         disk:
         - size_gb: 20
           type: thin
-          datastore: USB-stick
+          datastore: USB-Stick
         datacenter: "{{ DC_name }}"
         folder: ansiblevms
         customization:
