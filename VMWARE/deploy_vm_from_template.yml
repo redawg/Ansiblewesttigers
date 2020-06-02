@@ -21,8 +21,8 @@
     - name: Connect to vCenter and Deploy from template
       vmware_guest:
         hostname: "{{ vcenter_ip }}"
-        username: "{{ vcenter_username }}"
-        password: "{{ vcenter_password }}"
+        #username: "{{ vcenter_username }}"
+        #password: "{{ vcenter_password }}"
         validate_certs: False
         name: "{{ vm_name }}"
         state: "{{ state }}"
