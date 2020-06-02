@@ -32,7 +32,7 @@
         # cluster and esxi_hostname are mutually exclusive. cluster was giving me an error
         esxi_hostname: "{{ esxi_server }}"
         disk:
-        - size_gb: 20
+        - size_gb: "{{ size_gb }}"
           type: thin
           datastore: USB-Stick
         datacenter: "{{ DC_name }}"
