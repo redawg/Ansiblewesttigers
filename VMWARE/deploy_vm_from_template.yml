@@ -15,6 +15,7 @@
     vm_password: ''
     vm_network: ''
     state: ''
+    esxi_hostname: ''
   
   tasks: 
 
@@ -33,7 +34,7 @@
         disk:
         - size_gb: 20
           type: thin
-          datastore: usb-stick
+          datastore: USB-stick
         datacenter: "{{ DC_name }}"
         folder: ansiblevms
         customization:
