@@ -1,0 +1,28 @@
+---
+- name: Create NetApp Volume
+  hosts: NetApp
+  vars:
+    na_host: ""
+    na_user: ""
+    volnane: ""
+    account: ""
+    size_gb: ""
+    min: ""
+    max: ""
+    burst: ""
+    na_state: ""
+  vars_prompt:
+   - name: "password"
+     prompt: "na_pass"
+
+  tasks:
+    - name: Create Volume
+      na_elementsw_volume:
+        hostname: "{{ na_host }}"
+        username: "{{ na_user }}"
+        password: "{{ na_pass }}"
+        state: "{{ na_state }}"
+        qoa: {minlOPS: "{{ min }}", maxlOPS: "{{ max }}", burstlOPS: "{{ burst }}" }
+        account_id: "{{ account }}"
+        size: "{{ size_gb }}"
+        enable512e: True
