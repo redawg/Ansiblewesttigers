@@ -24,6 +24,6 @@
       host: "{{hostvars[item].ansible_host}}"
       state: "{{state}}"
       name: "{{hostvars[item].inventory_hostname}}"
-    loop: "{{ groups['tag_ansible_group_jboss'] }}"
-    #loop: "{{ groups['tag_Name_mlowcher_jboss_demo'] }}"
+    #loop: "{{ groups['tag_ansible_group_jboss'] }}"
+    loop: "{{ groups['tag_Name_mlowcher_jboss_demo'] }}"
 
