@@ -14,7 +14,7 @@
         cert_key_chain:
           - cert: f5test
             key: f5test
-            chain: f5test
+            #chain: f5test
         provider:
           server: "{{ansible_host}}"
           user: "{{ansible_user}}"
