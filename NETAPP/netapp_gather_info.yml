@@ -1,0 +1,19 @@
+---
+- name: Gathering NetApp information
+  hosts: netapp
+  gather_facts: False
+  vars:
+    na_hostname: ""
+    na_userid: ""
+    na_password: ""
+
+  tasks:
+    - name: Gather all info except for lun information
+      na_ontap_info:
+        state: info
+        hostname: "{{ na_hostname }}"
+        username: "{{ na_userid }}"
+        password: "{{ na_password }}"
+        gather_subset:
+          - "!lun_info"
+      register: ontap_info
