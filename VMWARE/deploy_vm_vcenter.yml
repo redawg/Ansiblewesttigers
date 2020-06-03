@@ -15,15 +15,14 @@
     vm_password: ''
     vm_network: ''
     state: ''
-    esxi_hostname: ''
   
   tasks: 
 
     - name: Connect to vCenter and Deploy from template
       vmware_guest:
         hostname: "{{ vcenter_ip }}"
-        #username: "{{ vcenter_username }}"
-        #password: "{{ vcenter_password }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
         validate_certs: False
         name: "{{ vm_name }}"
         state: "{{ state }}"
@@ -32,9 +31,9 @@
         # cluster and esxi_hostname are mutually exclusive. cluster was giving me an error
         esxi_hostname: "{{ esxi_server }}"
         disk:
-        - size_gb: "{{ size_gb }}"
+        - size_gb: 20
           type: thin
-          datastore: USB-Stick
+          datastore: usb-stick
         datacenter: "{{ DC_name }}"
         folder: ansiblevms
         customization:
