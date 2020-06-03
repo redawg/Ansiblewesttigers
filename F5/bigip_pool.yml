@@ -9,7 +9,7 @@
   - name: CREATE POOL
     bigip_pool:
       provider:
-        server: "{{ansible_host}}"s
+        server: "{{ansible_host}}"
         server_port: 8443
         validate_certs: false
       name: "http_pool"
