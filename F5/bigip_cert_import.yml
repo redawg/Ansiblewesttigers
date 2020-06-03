@@ -12,7 +12,7 @@
         state: present
         content: "{{ lookup('file', '/incoming/f5temp.crt') }}"
         provider:
-          server: "{{private_ip}}"
+          server: "{{ansible_host}}" #"{{private_ip}}"
           user: "{{ansible_user}}"
           password: "{{ansible_ssh_pass}}"
           server_port: 8443
