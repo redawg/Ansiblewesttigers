@@ -21,6 +21,7 @@
 ---
 - hosts: all
   connection: local
+  gather_facts: False
 
   tasks: 
 
