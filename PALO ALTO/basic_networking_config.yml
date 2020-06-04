@@ -24,7 +24,8 @@
   gather_facts: False
 
   roles:
-    - role: paloaltonetworks.paloaltonetworks
+    - paloaltonetworks.paloaltonetworks
+    - ansible-network.network-engine
 
   tasks: 
 
