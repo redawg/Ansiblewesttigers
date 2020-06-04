@@ -16,6 +16,7 @@
 # REQUIREMENTS
 # Ansible version 2.9+
 # pan-python
+# pandevice
 # ansible-galaxy install PaloAltoNetworks.paloaltonetworks
 
 ---
@@ -23,21 +24,20 @@
   connection: local
   gather_facts: False
 
-  roles:
+  collections:
     - paloaltonetworks.paloaltonetworks
-    - ansible-network.network-engine
 
   tasks: 
 
    # - name: change user password using ssh protocol
-    #  panos_admpwd:
+    #  paloaltonetworks.panos.panos_admpwd:
      #   ip_address: "{{ mgmt_ip }}"
       #  username: "{{admin_username}}"
        # newpassword: "{{admin_password}}"
         #key_filename: "{{key_name}}"
 
     - name: configure ethernet1/1
-      panos_interface:
+      paloaltonetworks.panos.panos_interface:
         ip_address: "{{mgmt_ip}}"
         username: "{{admin_username}}"
         password: "{{admin_password}}"
@@ -47,7 +47,7 @@
         commit: False
 
     - name: configure ethernet1/2
-      panos_interface:
+      paloaltonetworks.panos.panos_interface:
         ip_address: "{{mgmt_ip}}"
         username: "{{admin_username}}"
         password: "{{admin_password}}"
@@ -57,7 +57,7 @@
         commit: False
 
     - name: set dns and ntp
-      panos_mgtconfig:
+      paloaltonetworks.panos.panos_mgtconfig:
         ip_address: "{{mgmt_ip}}"
         username: "{{admin_username}}"
         password: "{{admin_password}}"
