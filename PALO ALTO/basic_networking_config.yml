@@ -23,6 +23,9 @@
   connection: local
   gather_facts: False
 
+  roles:
+    - role: paloaltonetworks.paloaltonetworks
+
   tasks: 
 
    # - name: change user password using ssh protocol
