@@ -37,7 +37,7 @@
         #key_filename: "{{key_name}}"
 
     - name: configure ethernet1/1
-      paloaltonetworks.panos.panos_interface:
+      panos_interface:
         ip_address: "{{mgmt_ip}}"
         username: "{{admin_username}}"
         password: "{{admin_password}}"
@@ -47,7 +47,7 @@
         commit: False
 
     - name: configure ethernet1/2
-      paloaltonetworks.panos.panos_interface:
+      panos_interface:
         ip_address: "{{mgmt_ip}}"
         username: "{{admin_username}}"
         password: "{{admin_password}}"
@@ -57,7 +57,7 @@
         commit: False
 
     - name: set dns and ntp
-      paloaltonetworks.panos.panos_mgtconfig:
+      panos_mgtconfig:
         ip_address: "{{mgmt_ip}}"
         username: "{{admin_username}}"
         password: "{{admin_password}}"
