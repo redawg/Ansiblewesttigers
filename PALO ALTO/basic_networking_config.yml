@@ -15,6 +15,7 @@
 #
 # REQUIREMENTS
 # Ansible version 2.9+
+# pan-python
 # ansible-galaxy install PaloAltoNetworks.paloaltonetworks
 
 ---
