@@ -24,12 +24,12 @@
 
   tasks: 
 
-    - name: change user password using ssh protocol
-      panos_admpwd:
-        ip_address: "{{ mgmt_ip }}"
-        username: "{{admin_username}}"
-        newpassword: "{{admin_password}}"
-        key_filename: "{{key_name}}"
+   # - name: change user password using ssh protocol
+    #  panos_admpwd:
+     #   ip_address: "{{ mgmt_ip }}"
+      #  username: "{{admin_username}}"
+       # newpassword: "{{admin_password}}"
+        #key_filename: "{{key_name}}"
 
     - name: configure ethernet1/1
       panos_interface:
