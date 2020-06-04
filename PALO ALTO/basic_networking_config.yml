@@ -19,11 +19,11 @@
 # ansible-galaxy install PaloAltoNetworks.paloaltonetworks
 
 ---
-- hosts: localhost
+- hosts: all
   connection: local
 
   tasks: 
-  
+
     - name: change user password using ssh protocol
       panos_admpwd:
         ip_address: "{{ mgmt_ip }}"
