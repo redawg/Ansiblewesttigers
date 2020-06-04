@@ -23,6 +23,6 @@
         dns_server_primary: "8.8.8.8"
         #ntp_server_primary: "0.us.pool.ntp.org"
         #ntp_server_secondary: "1.us.pool.ntp.org"
-        timezone: "US/Pacific"
-        login_banner: "Secure environment configured by Ansible"
+        #timezone: "US/Pacific"
+        #login_banner: "Secure environment configured by Ansible"
         commit: True
