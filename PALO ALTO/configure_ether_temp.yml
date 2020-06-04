@@ -3,9 +3,6 @@
   connection: local
   gather_facts: False
 
-  roles:
-    - role: PaloAltoNetworks.paloaltonetworks
-
   tasks: 
 
     - name: configure ethernet1/1
