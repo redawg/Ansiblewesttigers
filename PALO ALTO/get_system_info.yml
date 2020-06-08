@@ -1,0 +1,18 @@
+---
+- hosts: all
+  connection: local
+  gather_facts: False
+
+  collections:
+    - paloaltonetworks.paloaltonetworks
+
+  tasks: 
+
+  - name: Get the system info
+    panos_op:
+      provider: '{{ provider }}'
+      cmd: 'show system info'
+    register: res
+
+  - debug:
+      msg: '{{ res.stdout }}'
