@@ -10,7 +10,8 @@
 
   - name: Get the system info
     panos_op:
-      provider: '{{ ansible_host }}'
+      provider:
+      ip_address: "{{ ansible_host }}"
       cmd: 'show system info'
     register: res
 
