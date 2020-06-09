@@ -1,0 +1,53 @@
+---
+- name: Create a virtual machine on vSphere
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars:
+    vcenter_ip: ''
+    vcenter_username: ''
+    vcenter_password: ''
+    esxi_server: ''
+    DC_name: ''
+    vm_name: ''
+    template: ''
+    guest_domain: ''
+    vm_password: ''
+    vm_network: ''
+    state: ''
+  
+  tasks: 
+
+    - name: Connect to vCenter and Deploy from template
+      vmware_guest:
+        hostname: "{{ vcenter_ip }}"
+        #username: "{{ vcenter_username }}"
+        #password: "{{ vcenter_password }}"
+        validate_certs: False
+        name: "{{ vm_name }}"
+        state: "{{ state }}"
+        template: "{{ template }}"
+        #cluster: Cluster01
+        # cluster and esxi_hostname are mutually exclusive. cluster was giving me an error
+        esxi_hostname: "{{ esxi_server }}"
+        disk:
+        - size_gb: "{{ size_gb }}"
+          type: thin
+          datastore: USB-Stick
+        datacenter: "{{ DC_name }}"
+        folder: ansiblevms
+        customization:
+          domain: "{{ guest_domain }}"
+          dns_suffix:
+            - "{{ guest_domain }}"
+          password: "{{ vm_password }}"
+        networks:
+        - name: "{{vm_network}}"
+          type: dhcp
+          wait_for_ip_address: yes
+      register: deploy_vm
+
+    - name: look at VM register
+      debug:
+        var: deploy_vm
+
