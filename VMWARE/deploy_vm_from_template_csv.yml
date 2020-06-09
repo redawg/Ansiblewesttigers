@@ -28,7 +28,8 @@
 
     - name: Get facts from CSV file
       csv_to_facts:
-        src: https://raw.githubusercontent.com/redawg/Ansiblewesttigers/VMWARE/vm_spreadsheet.csv
+        #src: https://raw.githubusercontent.com/redawg/Ansiblewesttigers/blob/master/VMWARE/files/vm_spreadsheet.csv
+        src: /files/vm_spreadsheet.csv
 
     - name: Connect to vCenter and Deploy from template
       vmware_guest:
@@ -60,6 +61,7 @@
           netmask: 255.255.255.0
           gateway: 192.168.0.1
           wait_for_ip_address: yes
+      with_items: "{{spreadsheet}}"
       register: deploy_vm
 
     - name: look at VM register
