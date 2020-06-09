@@ -1,0 +1,67 @@
+---
+# Create a .csv file with the following columns
+# vcenter_ip
+# vcenter_username
+# vcenter_password
+# esxi_server
+# size_gb
+# DC_name
+# folder
+# vm_name
+# template
+# guest_domain
+# vm_password
+# vm_network
+# state
+# datastore
+
+- name: Create a virtual machine on vSphere
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars:
+    username: ''
+    password: ''
+  
+  tasks: 
+
+    - name: Get facts from CSV file
+      csv_to_facts:
+        src: https://raw.githubusercontent.com/redawg/Ansiblewesttigers/VMWARE/vm_spreadsheet.csv
+
+    - name: Connect to vCenter and Deploy from template
+      vmware_guest:
+        hostname: "{{ item.vcenter_ip }}"
+        # username: "{{ vcenter_username }}"
+        # password: "{{ vcenter_password }}"
+        validate_certs: False
+        name: "{{ item.vm_name }}"
+        state: "{{ item.state }}"
+        template: "{{ item.template }}"
+        #cluster: Cluster01
+        #cluster and esxi_hostname are mutually exclusive. cluster was giving me an error
+        esxi_hostname: "{{ item.esxi_server }}"
+        disk:
+        - size_gb: "{{ item.size_gb }}"
+          type: thin
+          datastore: "{{ item.datastore }}"
+        datacenter: "{{ item.DC_name }}"
+        folder: "{{ item.folder }}"
+        customization:
+          domain: "{{ item.guest_domain }}"
+          dns_suffix:
+            - "{{ item.guest_domain }}"
+          password: "{{ item.vm_password }}"
+        networks:
+        - name: "{{item.vm_network}}"
+          type: static # Optionally put DHCP and remove the next three lines
+          ip: 192.168.0.100
+          netmask: 255.255.255.0
+          gateway: 192.168.0.1
+          wait_for_ip_address: yes
+      register: deploy_vm
+
+    - name: look at VM register
+      debug:
+        var: deploy_vm

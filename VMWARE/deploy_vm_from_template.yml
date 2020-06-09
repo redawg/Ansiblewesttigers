@@ -15,7 +15,6 @@
     vm_password: ''
     vm_network: ''
     state: ''
-    esxi_hostname: ''
   
   tasks: 
 
