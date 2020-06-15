@@ -29,7 +29,7 @@
     - name: Get facts from CSV file
       csv_to_facts:
         #src: https://raw.githubusercontent.com/redawg/Ansiblewesttigers/blob/master/VMWARE/files/vm_spreadsheet.csv
-        src: /files/vm_spreadsheet.csv
+        src: /incoming/vm_spreadsheet.csv
 
     - name: Connect to vCenter and Deploy from template
       vmware_guest:
