@@ -11,8 +11,8 @@
   tasks:
   - name: Add static ANAME record
     win_dns_record:
-      name:  myapp #"{{ device_hostname }}"
+      name: "{{ device_hostname }}"
       type: "A"
-      value: myapp.lowcher.local #"{{ IPAddress }}"
-      state: present #"{{ state }}"
-      zone: lowcher.local #"{{ DNS_domain }}"
+      value: "{{ IPAddress }}"
+      state: "{{ state }}"
+      zone: "{{ DNS_domain }}"
