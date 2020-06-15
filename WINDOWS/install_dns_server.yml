@@ -5,5 +5,5 @@
   tasks:
     - name: install dns server
       win_feature:
-        name: DnsServer
+        name: Dns
         state: "present"
