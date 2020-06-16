@@ -1,11 +1,12 @@
 ---
 - name: Register DNS record on Windows DNS server.
-  hosts: DNSServername
+  hosts: all
   gather_facts: False
   vars:
     device_hostname: ''
     DNS_domain: ''
     IPAddress: ''
+    state: ''
 
   tasks:
   - name: Add static ANAME record
@@ -13,5 +14,5 @@
       name: "{{ device_hostname }}"
       type: "A"
       value: "{{ IPAddress }}"
-      state: present
+      state: "{{ state }}"
       zone: "{{ DNS_domain }}"

@@ -1,0 +1,30 @@
+---
+- hosts: all
+  connection: local
+  gather_facts: False
+
+  tasks: 
+
+    - name: configure ethernet1/1
+      panos_interface:
+        ip_address: "{{mgmt_ip}}"
+        username: "{{admin_username}}"
+        password: "{{admin_password}}"
+        if_name: "ethernet1/1"
+        zone_name: "untrust"
+        create_default_route: "yes"
+        #validate_certs: false
+        commit: False
+
+    - name: set dns and ntp
+      panos_mgtconfig:
+        ip_address: "{{mgmt_ip}}"
+        username: "{{admin_username}}"
+        password: "{{admin_password}}"
+        dns_server_primary: "8.8.8.8"
+        #validate_certs: false
+        #ntp_server_primary: "0.us.pool.ntp.org"
+        #ntp_server_secondary: "1.us.pool.ntp.org"
+        #timezone: "US/Pacific"
+        #login_banner: "Secure environment configured by Ansible"
+        commit: True

@@ -1,0 +1,21 @@
+---
+- hosts: all
+  connection: local
+  gather_facts: False
+
+  collections:
+    - paloaltonetworks.paloaltonetworks
+
+  tasks: 
+
+  - name: Get the system info
+    panos_op:
+      provider:
+        ip_address: "{{ ansible_host }}"
+        username: "{{ ansible_username }}"
+        password: "{{ ansible_password }}"
+        cmd: 'show system info'
+    register: res
+
+  - debug:
+      msg: '{{ res.stdout }}'

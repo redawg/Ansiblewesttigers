@@ -1,0 +1,20 @@
+---
+- name: Looking up file to import Certificate
+  hosts: lb
+  connection: local
+  gather_facts: false
+
+  tasks:
+
+    - name: Importing Certificate now...
+      bigip_ssl_certificate:
+        name: f5temp
+        state: present
+        content: "{{ lookup('file', '/incoming/f5temp.crt') }}"
+        provider:
+          server: "{{ansible_host}}" #"{{private_ip}}"
+          user: "{{ansible_user}}"
+          password: "{{ansible_ssh_pass}}"
+          server_port: 8443
+          validate_certs: false
+      delegate_to: localhost

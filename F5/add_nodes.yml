@@ -3,12 +3,7 @@
   hosts: lb
   connection: local
   gather_facts: false
-  vars:
-    ansible_host: ''
-    ansible_user: ''
-    ansible_ssh_pass: ''
-    tcp_port: ''
-    state: ''
+  
     
 
   tasks:
@@ -19,11 +14,11 @@
         server: "{{ansible_host}}"
         user: "{{ansible_user}}"
         password: "{{ansible_ssh_pass}}"
-        server_port: "{{ tcp_port }}" # 443 for on-prem. Must be 8443 in public cloud
+        server_port: 8443 #"{{ tcp_port }}" # 443 for on-prem. Must be 8443 in public cloud
         validate_certs: false
       host: "{{hostvars[item].ansible_host}}"
       state: "{{state}}"
       name: "{{hostvars[item].inventory_hostname}}"
-    #loop: "{{ groups['tag_ansible_group_jboss'] }}"
-    loop: "{{ groups['tag_Name_mlowcher_jboss_demo'] }}"
+    loop: "{{ groups['tag_ansible_group_jboss'] }}"
+    #loop: "{{ groups['tag_Name_mlowcher_jboss_demo'] }}"
 

@@ -1,0 +1,9 @@
+---
+- name: Install or remove DNS
+  hosts: all
+
+  tasks:
+    - name: install dns server
+      win_feature:
+        name: Dns
+        state: "present"

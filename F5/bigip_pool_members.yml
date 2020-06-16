@@ -19,5 +19,4 @@
       host: "{{hostvars[item].ansible_host}}"
       port: "8080"
       pool: "http_pool"
-    #loop: "{{ groups['tag_ansible_group_jboss'] }}"
-    loop: "{{ groups['tag_Name_mlowcher_jboss_demo'] }}"
+    loop: "{{ groups['tag_ansible_group_jboss'] }}"

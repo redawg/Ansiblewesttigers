@@ -43,10 +43,7 @@
           password: "{{ vm_password }}"
         networks:
         - name: "{{vm_network}}"
-          type: static # Optionally put DHCP and remove the next three lines
-          ip: 192.168.0.100
-          netmask: 255.255.255.0
-          gateway: 192.168.0.1
+          type: dhcp
           wait_for_ip_address: yes
       register: deploy_vm
 
