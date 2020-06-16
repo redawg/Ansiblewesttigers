@@ -5,7 +5,7 @@
  #   - juniper.junos 
   connection: local
   gather_facts: true
-  ansible_network_os: junos
+ # ansible_network_os: junos
 
   tasks:
   # - name: collect default set of facts
