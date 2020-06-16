@@ -3,7 +3,7 @@
   hosts: rtr3
   roles:
     - juniper.junos 
-  connection: network_cli
+  connection: local
   gather_facts: true
 
   tasks:
