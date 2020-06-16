@@ -1,5 +1,5 @@
 ---
-- name: Get Device Facts - Install Juniper.junos Galaxy first! "ansible-galaxy install juniper.junos"
+- name: Get Device Facts
   hosts: rtr3
  # roles:
  #   - juniper.junos 
