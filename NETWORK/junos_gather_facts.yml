@@ -1,12 +1,24 @@
 ---
 - name: Get Device Facts - Install Juniper.junos Galaxy first! "ansible-galaxy install juniper.junos"
   hosts: rtr3
-  roles:
-    - juniper.junos 
+ # roles:
+ #   - juniper.junos 
   connection: local
   gather_facts: true
 
   tasks:
+  # - name: collect default set of facts
+  #   junos_facts:
+
+    - name: collect default set of facts and configuration
+      junos_facts:
+        gather_subset: config
+
+    - name: Gather legacy and resource facts
+      junos_facts:
+        gather_subset: all
+        gather_network_resources: all
+
     - name: Checking NETCONF connectivity.
       wait_for: 
         host: "{{ ansible_hostname }}"
