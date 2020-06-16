@@ -1,0 +1,9 @@
+---
+loadbalancing:
+  - ldap-1.mydomain.com
+  - ldap-2.mydomain.com
+  - ldap-3.mydomain.com
+  - ldap-4.mydomain.com
+lb-ip:
+  - 10.10.10.20
+  - 10.10.10.30
