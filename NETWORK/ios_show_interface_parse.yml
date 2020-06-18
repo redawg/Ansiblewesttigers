@@ -1,0 +1,62 @@
+---
+- name: pyATS testing (install clay584.parse_genie, pip install pyats, pip install genie)
+  hosts: cisco
+  gather_facts: no
+  connection: network_cli
+  roles:
+    - clay584.parse_genie
+
+  tasks:
+
+  - name: Run the show interface command
+    ios_command:
+      commands:
+        - show interfaces
+    register: interfaces
+
+  - name: Set fact with Genie filter plugin
+    set_fact:
+      pyats_interface: "{{ interfaces['stdout'][0] | parse_genie(command='show interfaces', os='ios') }}"
+
+  - name: Debug pyATS facts - all
+    debug:
+     var: pyats_interfaces
+
+  - name: Display oper_status and mtu
+    debug:
+      msg: "{{ item.value.oper_status }} {{ item.value.mtu }}"
+    loop: "{{ pyats_interfaces | dict2items }}"
+
+
+
+#  - name: Debug pyATS facts - oper_status
+#    debug:
+#     var: pyats_interfaces.oper_status
+#
+#  - name: Debug pyATS facts - mtu
+#    debug:
+#     var: pyats_interfaces.mtu
+
+dict2items
+#    debug:
+#     var: pyats_interfaces
+#
+  - name: Copying pyats_interfaces content to file
+    local_action: copy content={{ pyats_interfaces }} dest=/var/tmp/pyats_interfaces.txt
+
+  - name: Display oper_status and mtu
+    debug:
+      msg: "{{ item.value.oper_status }} {{ item.value.mtu }}"
+    loop: "{{ pyats_interfaces | dict2items }}"
+
+  - name: pick up pyats_interfaces variable, convert to list
+    set_fact:
+       PACKAGES: "{{ lookup('/tmp/pyats_interfaces.txt', 'PACKAGES').split(',') }}"
+
+  - name: create dict list variable
+    set_fact:
+       PACKAGES_DICT: "{{ PACKAGES_DICT|default([]) + [{'key': item}] }}"
+    with_items:
+      - "{{ PACKAGES }}"
+
+

@@ -1,0 +1,10 @@
+---
+- name: Get JunoOS Facts
+  hosts: all
+  gather_facts: yes
+
+  tasks:
+
+  - name: Print JunOS facts to console
+    debug:
+      msg: "{{ ansible_facts }}"
