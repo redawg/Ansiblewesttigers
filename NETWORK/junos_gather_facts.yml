@@ -1,7 +1,8 @@
 ---
 - name: Get Device Facts
-  hosts: rtr3
-  gather_facts: true
+  hosts: all
+  gather_facts: false
+  connection: NETCONF
 
   tasks:
     - name: collect default set of facts
