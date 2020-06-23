@@ -6,10 +6,10 @@
   #ansible_network_os: 'junos'
 
   tasks:
-    - name: ENABLE NETCONF
-      junos_netconf:
-        netconf_port: 22
-        state: present
+ #   - name: ENABLE NETCONF
+ #     junos_netconf:
+ #       netconf_port: 22
+ #       state: present
 
     - name: collect default set of facts
       junos_facts:
