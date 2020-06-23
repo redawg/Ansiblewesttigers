@@ -2,7 +2,7 @@
 - name: Get Device Facts
   hosts: all
   gather_facts: false
-  connection: network_cli
+  connection: NETCONF
   #ansible_network_os: 'junos'
 
   tasks:
