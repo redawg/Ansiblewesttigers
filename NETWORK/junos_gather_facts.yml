@@ -3,6 +3,7 @@
   hosts: all
   gather_facts: false
   connection: network_cli
+  ansible_network_os: 'junos'
 
   tasks:
     - name: ENABLE NETCONF
