@@ -7,6 +7,7 @@
 
   - name: collect default set of facts
     junos_facts:
+      gather_subset: config
     
   - name: Print JunOS facts to console
     debug:
