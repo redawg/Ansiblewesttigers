@@ -1,7 +1,7 @@
 ---
 - name: Get JunoOS Facts
   hosts: all
-  gather_facts: yes
+  gather_facts: false
 
   tasks:
 
