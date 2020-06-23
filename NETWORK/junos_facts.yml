@@ -5,6 +5,9 @@
 
   tasks:
 
+  - name: collect default set of facts
+    junos_facts:
+    
   - name: Print JunOS facts to console
     debug:
       msg: "{{ ansible_facts }}"
