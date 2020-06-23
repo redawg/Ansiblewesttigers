@@ -2,9 +2,14 @@
 - name: Get Device Facts
   hosts: all
   gather_facts: false
-  connection: NETCONF
+  connection: network_cli
 
   tasks:
+    - name: ENABLE NETCONF
+      junos_netconf:
+        netconf_port: 22
+        state: present
+
     - name: collect default set of facts
       junos_facts:
 
