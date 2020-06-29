@@ -1,0 +1,29 @@
+---
+- hosts: [ios]
+  gather_facts: false
+
+  tasks:
+
+  - name: Gather vlan info
+    ios_command:
+      commands: show vlan
+    register: vland
+
+  - set_fact:
+       interface: "{{ vland.stdout_lines[0][3].split(\" \") | select('match', '^(Fa|Gi)') | list  }}"
+
+  - name: Show interface debug
+    debug:
+      var: interface
+
+  - name: Get interface config
+    tags: shorun
+    ios_command:
+       commands: show running-config view full | section interface *{{ item }}
+    with_items: "{{ interface }}"
+    register: shorunint
+
+  - name: show interface variable
+    tags: showrun
+    debug:
+      var: shorunint

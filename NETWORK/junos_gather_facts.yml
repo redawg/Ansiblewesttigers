@@ -7,6 +7,10 @@
   tasks:
     - name: collect default set of facts
       junos_facts:
+      provider:
+        host: rtr3
+        username: ec2-user
+        timeout: 60
 
     - name: collect default set of facts and configuration
       junos_facts:
