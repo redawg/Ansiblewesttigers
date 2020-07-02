@@ -20,7 +20,7 @@
       port: "443"
       state: "{{state}}"
       enabled_vlans: "all"
-      all_profiles: ['http', 'clientssl', 'tcp', 'oneconnect']
+      all_profiles: ['coolApp_http', 'coolApp_clientssl', 'coolApp_tcp', 'oneconnect']
       pool: "http_pool"
       snat: "Automap"
 
