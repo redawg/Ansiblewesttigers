@@ -2,7 +2,7 @@
 - name: Get JunoOS Facts
   hosts: all
   gather_facts: false
-  connection: local
+  connection: network_cli
 
   tasks:
 
