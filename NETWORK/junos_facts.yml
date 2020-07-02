@@ -2,6 +2,7 @@
 - name: Get JunoOS Facts
   hosts: all
   gather_facts: false
+  ansible_python_interpreter: /usr/bin/python3
 
   tasks:
 
