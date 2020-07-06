@@ -10,7 +10,7 @@
 
   tasks:
     - name: Editing HTTPD
-      raw: curl -u admin:Kenkar@66 -k https://3.101.11.188:8443/mgmt/tm/sys/httpd -X PATCH  -d '{"include":"\n    <LocationMatch \\\".*\\\\.\\\\.;.*\\\">\n    Redirect 404 /\n    </LocationMatch>\n    "}'  -H content-type:application/json 
+      raw: curl -u admin:"{{ansible_ssh_pass}}" -k https://3.101.11.188:8443/mgmt/tm/sys/httpd -X PATCH  -d '{"include":"\n    <LocationMatch \\\".*\\\\.\\\\.;.*\\\">\n    Redirect 404 /\n    </LocationMatch>\n    "}'  -H content-type:application/json 
         
 
     - name: Saving HTTPD change
