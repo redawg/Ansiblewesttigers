@@ -1,0 +1,40 @@
+---
+# This playbook will edit the httpd on F5 to create a workaround for CVE-2020-5902.
+# Please refer to:
+# https://support.f5.com/csp/article/K52145254 for information regarding this critical exploit
+
+- name: Mitigate CVE-2020-5902
+  hosts: lb
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: Editing HTTPD
+      icontrol_install_config: 
+        uri: "/mgmt/tm/sys/globalSettings"
+        method: PATCH
+        body: '{"include":"\n    <LocationMatch \\\".*\\\\.\\\\.;.*\\\">\n    Redirect 404 /\n    </LocationMatch>\n    "}'     
+        host: "{{ansible_host}}"
+        username: "{{ansible_user}}"
+        password: "{{ansible_ssh_pass}}"
+        validate_certs: false
+
+    - name: Saving HTTPD change
+      bigip_command:
+        commands: save sys config
+        provider:
+          server: "{{ansible_host}}"
+          user: "{{ansible_user}}"
+          password: "{{ansible_ssh_pass}}"
+          server_port: 8443 # port 8443 for public cloud, port 443 for on-prem
+          validate_certs: false
+
+    - name: Restarting HTTPD daemon
+      bigip_command:
+        commands: restart sys service httpd
+        provider:
+          server: "{{ansible_host}}"
+          user: "{{ansible_user}}"
+          password: "{{ansible_ssh_pass}}"
+          server_port: 8443 # port 8443 for public cloud, port 443 for on-prem
+          validate_certs: false
