@@ -2,7 +2,8 @@
 - name: SNMP RO/RW STRING CONFIGURATION
   hosts: all
   gather_facts: false
-  connection: network_cli
+#  connection: network_cli
+  connection: local
   vars:
     snmp_ro_community: 'ansible-public'
     snmp_rw_community: 'ansible-private'
