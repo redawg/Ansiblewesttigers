@@ -1,6 +1,6 @@
 ---
 - name: SNMP RO/RW STRING CONFIGURATION
-  hosts: cisco
+  hosts: all
   gather_facts: false
   connection: network_cli
   vars:
