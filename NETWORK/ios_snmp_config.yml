@@ -7,7 +7,7 @@
     snmp_ro_community: 'ansible-public'
     snmp_rw_community: 'ansible-private'
 
-tasks:
+  tasks:
 
   - name: ENSURE THAT THE DESIRED SNMP STRINGS ARE PRESENT 
     ios_config:
