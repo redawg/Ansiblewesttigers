@@ -3,10 +3,10 @@
   hosts: all
   gather_facts: false
   connection: network_cli
-  ansible_network_os: ios
   vars:
     snmp_ro_community: 'ansible-public'
     snmp_rw_community: 'ansible-private'
+    ansible_network_os: ios
 
   tasks:
 
