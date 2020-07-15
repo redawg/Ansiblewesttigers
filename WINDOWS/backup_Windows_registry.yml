@@ -1,5 +1,5 @@
 ---
-- name: Mitigating Microsoft CVE-2020-1350.
+- name: Prepping for CVE-2020-1350.
   hosts: all
   gather_facts: False
 
