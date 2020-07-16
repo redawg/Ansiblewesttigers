@@ -8,4 +8,4 @@
       win_command: REG EXPORT HKLM C:\HKLM.Reg /y
       register: reg_save
     - debug:
-        var: reg_save.message
+        msg: "This is '{{reg_save}}'"
