@@ -1,0 +1,13 @@
+---
+- name: Prepping for CVE-2020-1350.
+  hosts: all
+  gather_facts: False
+
+  tasks:
+    - name: Displaying current value for DNS parameters
+      win_reg_stat:
+        path: HKLM:\\SYSTEM\CurrentControlSet\Services\DNS\Parameters
+        name: TcpReceivePacketSize
+      register: current_value
+    - debug:
+        msg: "This is '{{current_value}}'"
