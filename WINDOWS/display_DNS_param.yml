@@ -6,7 +6,8 @@
   tasks:
     - name: Displaying current value for DNS parameters
       win_reg_stat:
-        path: HKLM:\\SYSTEM\CurrentControlSet\Services\DNS\Parameters\CurrentVersion
+        #path: HKLM:\\SYSTEM\CurrentControlSet\Services\DNS\Parameters\CurrentVersion
+        path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion
         #name: TcpReceivePacketSize
       register: current_value
     - debug:
