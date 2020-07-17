@@ -1,0 +1,14 @@
+---
+- name: Restart "{{ win_srv }}" service
+  hosts: all
+  vars:
+    win_srv: ""
+
+  tasks:
+    - name: restarting now
+      win_service:
+        name: "{{ win_srv }}"
+        state: Restarted
+        start_mode: auto
+# IIS = W3Svc
+# DNS server = DNS
