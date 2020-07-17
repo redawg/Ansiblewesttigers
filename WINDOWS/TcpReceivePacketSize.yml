@@ -1,0 +1,23 @@
+---
+- name: Mitigating Microsoft CVE-2020-1350.
+  hosts: all
+  gather_facts: False
+
+  tasks:
+
+    - name: Create TcpReceivePacketSize path
+      win_regedit:
+        path: HKLM:\\SYSTEM\CurrentControlSet\Services\DNS\Parameters\TcpReceivePacketSize
+
+    - name: Changing registry settings for DNS parameters
+      win_regedit:
+        path: HKLM:\\SYSTEM\CurrentControlSet\Services\DNS\Parameters
+        name: TcpReceivePacketSize 
+        data: 0xFF00
+        type: dword
+
+    - name: restarting DNS service
+      win_service:
+        name: DNS
+        state: Restarted
+        start_mode: auto
