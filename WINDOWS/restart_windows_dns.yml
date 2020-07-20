@@ -1,0 +1,12 @@
+---
+- name: Restarting DNS service
+  hosts: all
+  gather_facts: False
+
+  tasks:
+    
+    - name: restarting DNS service
+      win_service:
+        name: DNS
+        state: Restarted
+        start_mode: auto
