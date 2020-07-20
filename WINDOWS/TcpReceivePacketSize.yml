@@ -7,7 +7,7 @@
 
     - name: Changing registry settings for DNS parameters
       win_regedit:
-        path: HKLM:\\SYSTEM\CurrentControlSet\Services\DNS\Parameters
+        path: HKLM:\\SYSTEM\CurrentControlSet\Services\DNS\Parameters\
         name: TcpReceivePacketSize 
         data: 0xFF00
         type: dword
