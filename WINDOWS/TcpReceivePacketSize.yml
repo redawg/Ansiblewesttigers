@@ -5,10 +5,6 @@
 
   tasks:
 
-    - name: Create TcpReceivePacketSize path
-      win_regedit:
-        path: HKLM:\\SYSTEM\CurrentControlSet\Services\DNS\Parameters\TcpReceivePacketSize
-
     - name: Changing registry settings for DNS parameters
       win_regedit:
         path: HKLM:\\SYSTEM\CurrentControlSet\Services\DNS\Parameters
