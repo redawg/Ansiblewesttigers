@@ -1,0 +1,40 @@
+---
+- name: create VMs
+  hosts: kvm
+  become: true
+  vars_files:
+    - kvm_vms_var.yml
+
+  tasks:
+    - name: get VM disks
+      command: "ls {{ vm_location }}"
+      register: disks
+      changed_when: "disks.rc != 0"
+
+    - name: create disk
+      command: >
+               virt-builder --format qcow2 centos-7.4
+               -o {{ vm_location}}/{{ item.key }}.{{ item.value.file_type }}
+               --root-password password:{{ root_pass }}
+      when: item.key not in disks.stdout
+      with_dict: "{{ guests }}"
+
+    - name: get list of VMs
+      virt:
+        command: "list_vms"
+      register: vms
+
+    - name: create vm
+      command: >
+                virt-install --import --name {{ item.key }}
+                --memory {{ item.value.mem }} --vcpus {{ item.value.cpus }}
+                --disk {{ vm_location }}/{{ item.key }}.{{ item.value.file_type }}
+                --noautoconsole --os-variant {{ item.value.os_type }}
+      when: item.key not in vms.list_vms
+      with_dict: "{{ guests }}"
+
+    - name: start vm
+      virt:
+        name: "{{ item.key }}"
+        state: running
+      with_dict: "{{ guests }}"

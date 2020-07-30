@@ -1,0 +1,24 @@
+---
+- name: Show Interfaces
+  hosts: all
+  connection: network_cli
+
+  tasks:
+  - name: Collect interface information from device
+    ios_command:
+      commands:
+        - show interfaces
+    register: ios_interface_output
+
+  - name: import the network-engine role
+    import_role:
+      name: ansible-network.network-engine
+
+  - name: Generate interface facts as JSON
+    command_parser:
+      file: "parse_templates/ios/show_interface_parse.yml"
+      content: "{{ ios_interface_output.stdout.0 }}"
+
+  - name: Shows interface_facts
+    debug:
+     var: interface_facts

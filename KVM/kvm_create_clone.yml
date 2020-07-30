@@ -1,0 +1,17 @@
+---
+- name: Clone KVM using a template
+  hosts: all
+  vars:
+    my_template: ""
+    vms:
+      - vm_name: ""
+        vm_state: "started"
+        vm_template: "{{ my_template }}"
+
+  tasks:
+    - name: Cloning "{{ name }}" VM using virt_clone module
+      virt_clone:
+        name:  "{{ vm_name }}"
+        state: "{{ vm_state }}"
+        template: "{{ vm_template }}"
+      become: true

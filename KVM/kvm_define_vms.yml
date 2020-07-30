@@ -1,0 +1,12 @@
+---
+- name: Defining KVM VMs
+  hosts: all
+
+  tasks:
+    - name: Set VM definition by reading jinja file
+      virt:
+        name: "{{ item.name }}"
+        command: define
+        xml: "{{ lookup('template', 'vm-definition.xml.j2') }}"
+      become: true
+      with_items: "{{ vms }}"

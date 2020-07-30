@@ -1,0 +1,15 @@
+---
+vm_location: "/data/VMs"
+root_pass: "password"
+
+guests:
+  test:
+    mem: 512
+    cpus: 1
+    os_type: rhel7
+    file_type: qcow2
+  test2:
+    mem: 512
+    cpus: 1
+    os_type: rhel7
+    file_type: qcow2
