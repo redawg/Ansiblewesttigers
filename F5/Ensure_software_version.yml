@@ -31,5 +31,5 @@
         server: "{{ ansible_host }}"
         user: "{{ ansible_user }}"
         validate_certs: no
-        transport: rest
+        # transport: rest
     delegate_to: localhost
