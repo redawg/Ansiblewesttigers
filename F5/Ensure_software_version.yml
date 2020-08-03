@@ -2,8 +2,8 @@
 - name: BIG-IP SETUP
   hosts: all
   connection: local
-  collections:
-    - f5networks.f5_module
+  #collections:
+    #- f5networks.f5_module
   tasks:
   - name: run show version on remote devices
     bigip_command:
@@ -31,5 +31,5 @@
         server: "{{ ansible_host }}"
         user: "{{ ansible_user }}"
         validate_certs: no
-        # transport: rest
+        transport: rest
     delegate_to: localhost
