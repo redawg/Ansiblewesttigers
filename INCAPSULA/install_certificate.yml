@@ -17,5 +17,5 @@
 
   tasks:
     - name: Posting now...
-      raw: curl -ku "{{ansible_user}}":"{{ansible_ssh_pass}}" -k https://"{{ansible_host}}//api/prov/v1/sites/customCertificate/upload -H content-type:application/json -X POST -d '{"include":"api_id="{{api_id}}" -d api_key="{{api_key}}" -d site_id="{{site_id}}" -d certificate="{{cert_base64}}" -d private_key="{{key_base64}}" -d passphrase="{{passphrase}}" "}'
+      raw: curl -ku https://"{{ansible_host}}//api/prov/v1/sites/customCertificate/upload -H content-type:application/json -X POST -d '{"include":"api_id="{{api_id}}" -d api_key="{{api_key}}" -d site_id="{{site_id}}" -d certificate="{{cert_base64}}" -d private_key="{{key_base64}}" -d passphrase="{{passphrase}}" "}'
   
