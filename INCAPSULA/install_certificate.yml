@@ -1,0 +1,21 @@
+---
+- name: Upload a certificate to Incapsula
+  hosts: all
+  connection: local
+  gather_facts: false
+  var:
+    ansible_user: ''
+    ansible_ssh_pass: ''
+    ansible_host: ''
+    api_id: ''
+    api_key: ''
+    site_id: ''
+    cert_base64: ''
+    key_base64: ''
+    passphrase: ''
+
+
+  tasks:
+    - name: Posting now...
+      raw: curl -ku "{{ansible_user}}":"{{ansible_ssh_pass}}" -k https://"{{ansible_host}}//api/prov/v1/sites/customCertificate/upload -H content-type:application/json -X POST -d '{"include":"api_id="{{api_id}}" -d api_key="{{api_key}}" -d site_id="{{site_id}}" -d certificate="{{cert_base64}}" -d private_key="{{key_base64}}" -d passphrase="{{passphrase}}" "}'
+  
