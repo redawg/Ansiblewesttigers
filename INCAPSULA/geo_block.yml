@@ -11,6 +11,7 @@
     api_key: ''
     site_id: ''
     rule_id: ''
+    # Countries are currently hardcoded
 
 
   tasks:
