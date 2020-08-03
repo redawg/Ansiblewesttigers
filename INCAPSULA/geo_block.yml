@@ -3,9 +3,7 @@
   hosts: all
   connection: local
   gather_facts: false
-  var:
-    ansible_user: ''
-    ansible_ssh_pass: ''
+  vars:
     ansible_host: ''
     api_id: ''
     api_key: ''
