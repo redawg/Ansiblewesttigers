@@ -23,8 +23,8 @@
 
   - name: Ensure an existing image is installed in specified volume
     bigip_software_install:
-      image: BIGIP-13.0.0.0.0.1645.iso
-      volume: HD1.2
+      image: BIGIP-15.1.0.2-0.0.9.iso
+      volume: HD1.1
       state: installed
       provider: 
         password: "{{ ansible_ssh_pass }}"
