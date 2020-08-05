@@ -1,0 +1,17 @@
+---
+- name: Upload a certificate to Incapsula
+  hosts: all
+  connection: local
+  gather_facts: false
+  vars:
+    ansible_host: ''
+    api_id: ''
+    api_key: ''
+    site_id: ''
+    cert_base64: ''
+    key_base64: ''
+    passphrase: ''
+
+
+  tasks:
+    - name: Posting now...
