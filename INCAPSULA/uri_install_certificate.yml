@@ -15,3 +15,10 @@
 
   tasks:
     - name: Posting now...
+      uri:
+        url: "https://{{ansible_host}}/api/prov/v1/sites/customCertificate/upload"
+        body_format: json
+        body: '{"api_id":"{{api_id}}","api_key":"{{api_key}}","site_id":"{{site_id}}","certificate":"{{cert_base64}}","private_key":"{{key_base64}}","passphrase":"{{passphrase}}"}'
+        follow_redirects: none
+        method: POST
+      register: post_result
