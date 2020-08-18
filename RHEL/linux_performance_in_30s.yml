@@ -1,7 +1,9 @@
 ---
 - name: Check Linux performance in less than 30 seconds
-  hosts: all
+  hosts: localhost
   become: true
+  become_user: root
+  become_method: sudo
 
   tasks:
     - name: Command will trigger dmesg
