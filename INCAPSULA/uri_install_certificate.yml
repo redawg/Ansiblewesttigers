@@ -1,0 +1,24 @@
+---
+- name: Upload a certificate to Incapsula
+  hosts: all
+  connection: local
+  gather_facts: false
+  vars:
+    ansible_host: ''
+    api_id: ''
+    api_key: ''
+    site_id: ''
+    cert_base64: ''
+    key_base64: ''
+    passphrase: ''
+
+
+  tasks:
+    - name: Posting now...
+      uri:
+        url: "https://{{ansible_host}}/api/prov/v1/sites/customCertificate/upload"
+        body_format: json
+        body: '{"api_id":"{{api_id}}","api_key":"{{api_key}}","site_id":"{{site_id}}","certificate":"{{cert_base64}}","private_key":"{{key_base64}}","passphrase":"{{passphrase}}"}'
+        follow_redirects: none
+        method: POST
+      register: post_result
