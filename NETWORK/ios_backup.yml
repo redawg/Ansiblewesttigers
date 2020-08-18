@@ -4,8 +4,8 @@
   gather_facts: false
   connection: network_cli
   vars:
-    ansible_connection: ''
-    ansible_network_os: ''
+    ansible_connection: 'ios'
+    ansible_network_os: 'ios'
     backup_path: ''
 
   tasks:
