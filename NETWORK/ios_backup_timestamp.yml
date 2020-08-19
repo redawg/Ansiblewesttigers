@@ -30,4 +30,4 @@
     - name: Rename backup
       copy:
         src: "{{config_output.backup_path}}"
-        dest: "{{backup_path}}/{{inventory_hostname}}.config"
+        dest: "{{backup_path}}{{inventory_hostname}}.config"
