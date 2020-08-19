@@ -21,3 +21,13 @@
         backup_options:
 #          filename: "{{inventory_hostname}}-{{timestamp}}.cfg"
           dir_path: "{{backup_path}}"
+    
+    - name: Backup with register variable
+      ios_config:
+        backup: yes
+      register: config_output
+
+    - name: Rename backup
+      copy:
+        src: "{{config_output.backup_path}}"
+        dest: "{{backup_path}}/{{inventory_hostname}}.config"
