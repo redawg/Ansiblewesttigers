@@ -6,7 +6,7 @@
   gather_facts: no
   vars:
     ansible_network_os: ios
-    backup_path: /var/lib/awx/projects/Networking_Tools/Config_Backups/
+    backup_path: /var/lib/awx/projects/Networking_Tools/backup_ios/
 
   tasks:
     - name: Set Date and Time Variable
