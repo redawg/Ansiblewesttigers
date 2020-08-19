@@ -19,7 +19,7 @@
       ios_config:
         backup: yes
         backup_options:
-          filename: "{{inventory_hostname}}-{{timestamp}}.cfg"
+#          filename: "{{inventory_hostname}}-{{timestamp}}.cfg"
           dir_path: "{{backup_path}}"
     
     - name: Backup with register variable
