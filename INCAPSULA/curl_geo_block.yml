@@ -14,5 +14,5 @@
 
   tasks:
     - name: Blocking now...
-      raw: curl -ku https://"{{ansible_host}}/api/prov/v1/sites/customCertificate/upload -H content-type:application/json -X POST -d '{"include":"api_id="{{api_id}}" -d api_key="{{api_key}}" -d site_id="{{site_id}}" -d countries=CA,US,RU,ES,UK -d rule_id=api.acl.blacklisted_countries 
+      raw: curl -X POST -d api_id=39469 -d api_key=e36a2607-a7d0-416e-bb8c-ff1a86acd4bb -d site_id=91567883 -d countries=CA,RU -d rule_id=api.acl.blacklisted_countries https://my.imperva.com/api/prov/v1/sites/configure/acl
   
