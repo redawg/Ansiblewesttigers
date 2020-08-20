@@ -5,10 +5,9 @@
   gather_facts: false
   vars:
     ansible_host: 'my.imperva.com'
-    api_id: ''
-    api_key: ''
-    site_id: ''
-    rule_id: ''
+    api_id: '39469'
+    api_key: 'e36a2607-a7d0-416e-bb8c-ff1a86acd4bb'
+    site_id: '91567883'
     # Countries are currently hardcoded
 
 
