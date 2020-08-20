@@ -17,7 +17,7 @@
       uri:
         url: "https://{{ansible_host}}/api/prov/v1/sites/customCertificate/upload"
         body_format: json
-        body: '{"countries" : "CA,US,RU,ES,UK", "rule_id" : "api.acl.blacklisted_countries"}'
+        body: '{"countries" : "CA,US", "rule_id" : "api.acl.blacklisted_countries"}'
         follow_redirects: none
         method: POST
       register: _result
