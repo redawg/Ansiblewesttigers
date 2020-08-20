@@ -14,7 +14,7 @@
   tasks:
     - name: Blocking now...
       uri:
-        url: "https://{{ansible_host}}/api/prov/v1/sites/configure/acl"
+        url: "https://my.imperva.com/api/prov/v1/sites/configure/acl"
         body_format: json
         body: '{"countries" : "CA,US", "rule_id" : "api.acl.blacklisted_countries"}'
         follow_redirects: none
