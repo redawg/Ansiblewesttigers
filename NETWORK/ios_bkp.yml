@@ -6,20 +6,13 @@
   gather_facts: no
   vars:
     ansible_network_os: ios
-    backup_path: /var/lib/awx/backups/backup_ios/
+    backup_path: /var/lib/awx/Networking_Tools/Config_Backups/
 
   tasks:
-    - name: Set Date and Time Variable
-      set_fact: timestamp="{{ lookup('pipe','date \"+%Y.%m.%d %H:%M:%S\"') }}"
- 
-    - name: Display Timestamp
-      debug: msg="Current device time is {{timestamp}}"
- 
     - name: Backup the config of {{inventory_hostname}} to {{backup_path}}
       ios_config:
         backup: yes
         backup_options:
-          filename: "{{inventory_hostname}}-{{timestamp}}.cfg"
           dir_path: "{{backup_path}}"
     
     - name: Backup with register variable

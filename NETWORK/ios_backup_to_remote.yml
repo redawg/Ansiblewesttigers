@@ -1,0 +1,22 @@
+---
+- name: Start Backup of ios Devices
+  hosts: all
+  connection: network_cli
+  become: yes
+  gather_facts: no
+  vars:
+    ansible_network_os: ios
+    backup_path: /var/lib/awx/backups/backup_ios/
+    remote_uid: netapp
+    remote_host: mystorage1.us.domain.com
+
+  tasks:
+    - name: Backup with register variable
+      ios_config:
+        backup: yes
+      register: config_output
+
+    - name: Rename backup
+      copy:
+        src: "{{config_output.backup_path}}"
+        dest: "{{remote_uid}}@{{remote_host}}:{{backup_path}}{{inventory_hostname}}.config"
