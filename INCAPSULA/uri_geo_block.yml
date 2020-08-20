@@ -4,7 +4,7 @@
   connection: local
   gather_facts: false
   vars:
-    ansible_host: ''
+    ansible_host: 'my.imperva.com'
     api_id: ''
     api_key: ''
     site_id: ''
