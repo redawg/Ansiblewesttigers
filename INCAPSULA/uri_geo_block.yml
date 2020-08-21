@@ -3,11 +3,11 @@
   hosts: all
   connection: local
   gather_facts: false
-  vars:
-    ansible_host: 'my.imperva.com'
-    api_id: '39469'
-    api_key: 'e36a2607-a7d0-416e-bb8c-ff1a86acd4bb'
-    site_id: '91567883'
+ #vars:
+    #ansible_host: 'my.imperva.com'
+    #api_id: '39469'
+    #api_key: 'e36a2607-a7d0-416e-bb8c-ff1a86acd4bb'
+    #site_id: '91567883'
     # Countries are currently hardcoded
 
 
@@ -16,7 +16,7 @@
       uri:
         url: "https://my.imperva.com/api/prov/v1/sites/configure/acl"
         body_format: json
-        body: '{"countries" : "CA,US", "rule_id" : "api.acl.blacklisted_countries"}'
+        body: '{"countries" : "CA,US", "api_id" : "39469", "api_key" : "e36a2607-a7d0-416e-bb8c-ff1a86acd4bb", "site_id" : "91567883", "rule_id" : "api.acl.blacklisted_countries"}'
         follow_redirects: none
         method: POST
       register: _result
