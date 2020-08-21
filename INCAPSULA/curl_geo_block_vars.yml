@@ -9,9 +9,9 @@
     #api_key: ''
     #site_id: ''
     #rule_id: '' currently hardcoded
-    # Countries are currently hardcoded
+    #countries: ''
 
 
   tasks:
     - name: Blocking now...
-      raw: curl -X POST -d api_id="{{api_id}}" -d api_key="{{api_key}}" -d site_id="{{site_id}}" -d countries=CA -d rule_id=api.acl.blacklisted_countries https://my.imperva.com/api/prov/v1/sites/configure/acl
+      raw: curl -X POST -d api_id="{{api_id}}" -d api_key="{{api_key}}" -d site_id="{{site_id}}" -d countries="{{countries}}" -d rule_id=api.acl.blacklisted_countries https://my.imperva.com/api/prov/v1/sites/configure/acl
