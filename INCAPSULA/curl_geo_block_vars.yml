@@ -1,0 +1,17 @@
+---
+- name: Geo blocking
+  hosts: all
+  connection: local
+  gather_facts: false
+  #vars:
+    #ansible_host: ''
+    #api_id: ''
+    #api_key: ''
+    #site_id: ''
+    #rule_id: '' currently hardcoded
+    #countries: ''
+
+
+  tasks:
+    - name: Blocking now...
+      raw: curl -X POST -d api_id="{{api_id}}" -d api_key="{{api_key}}" -d site_id="{{site_id}}" -d countries="{{countries}}" -d rule_id=api.acl.blacklisted_countries https://my.imperva.com/api/prov/v1/sites/configure/acl

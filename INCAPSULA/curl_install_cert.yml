@@ -1,0 +1,18 @@
+---
+- name: Upload a certificate to Incapsula
+  hosts: all
+  connection: local
+  gather_facts: false
+  vars:
+    #ansible_host: ''
+    api_id: '39469'
+    api_key: 'e36a2607-a7d0-416e-bb8c-ff1a86acd4bb'
+    site_id: '91567883'
+    cert_base64: ''
+    key_base64: ''
+    passphrase: ''
+
+
+  tasks:
+    - name: Posting now...
+      raw: curl -X POST -d api_id=39469 -d api_key=e36a2607-a7d0-416e-bb8c-ff1a86acd4bb -d site_id=91567883 -d certificate="{{cert_base64}}" -d private_key="{{key_base64}}" -d passphrase="{{passphrase}}" https://my.imperva.com/api/prov/v1/sites/customCertificate/upload

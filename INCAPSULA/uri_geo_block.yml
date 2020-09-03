@@ -3,21 +3,20 @@
   hosts: all
   connection: local
   gather_facts: false
-  vars:
-    ansible_host: ''
-    api_id: ''
-    api_key: ''
-    site_id: ''
-    rule_id: ''
+  #vars:
+    #ansible_host: 'my.imperva.com'
+    #api_id: '39469'
+    #api_key: 'e36a2607-a7d0-416e-bb8c-ff1a86acd4bb'
+    #site_id: '91567883'
     # Countries are currently hardcoded
 
 
   tasks:
     - name: Blocking now...
       uri:
-        url: "https://{{ansible_host}}/api/prov/v1/sites/customCertificate/upload"
+        url: "https://my.imperva.com/api/prov/v1/sites/configure/acl"
         body_format: json
-        body: '{"countries" : "CA,US,RU,ES,UK", "rule_id" : "api.acl.blacklisted_countries"}'
+        body: '{"api_id" : "{{api_id}}", "api_key" : "{{api_key}}", "site_id" : "{{site_id}}", "rule_id" : "api.acl.blacklisted_countries", "countries" : "CA,US"}'
         follow_redirects: none
         method: POST
       register: _result
