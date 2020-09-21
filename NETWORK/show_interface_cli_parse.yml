@@ -1,0 +1,8 @@
+---
+# Based on AnsibleFest 2020 https://docs.google.com/presentation/d/15NM3SRyMpN9CeWQ6aUAXEIvGpgD1uoRtKk7rKlq_WYM/edit#slide=id.g8ea9197a32_0_431 
+- name: Run a command and parse results
+  ansible.netcommon.cli_parse:
+      command: show interfaces
+      parser:
+        name: ansible.netcommon.xxxx
+      set_fact: interfaces
