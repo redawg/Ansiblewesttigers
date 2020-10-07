@@ -9,4 +9,4 @@
       dnf:
         name: {{ dnf_package }}
         state: present
-        update_cache: True 
+        update_cache: True
