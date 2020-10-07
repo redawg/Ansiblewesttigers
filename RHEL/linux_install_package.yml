@@ -5,7 +5,7 @@
   vars:
     dnf_package: ''
   tasks:
-    - name: Install {{ dnf_package }}
+    - name: Install "{{ dnf_package }}"
       dnf:
         name: "{{ dnf_package }}"
         state: present
