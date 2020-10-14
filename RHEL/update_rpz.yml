@@ -25,11 +25,12 @@
         state: present
         backup: yes
       register: new_zone_record
+    - debug: var=new_zone_record
 
     - name: Reload bind named
       shell: systemctl reload named
-      register: bind_reload
+      when: new_zone_record == "true"
 
-    - name: Move old RPZ zone files to old path
+    - name: Move old RPZ zone files to diferent path
       shell: mv {{ rpz_zone }}.* /var/named/data/old/ 
-      register: todaydate
+      when: new_zone_record == "true"
