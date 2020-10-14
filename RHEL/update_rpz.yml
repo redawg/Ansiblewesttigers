@@ -25,7 +25,7 @@
         state: present
         backup: yes
       register: new_zone_record
-    - debug: var=new_zone_record
+    - debug: var=new_zone_record.changed
 
     - name: Reload bind named
       shell: systemctl reload named
