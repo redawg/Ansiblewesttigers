@@ -21,7 +21,7 @@
     - name: Add the new domain "{{ rpz_new_domain }}" line if it does not exist
       lineinfile:
         path: "{{ rpz_zone }}"
-        line: "*.{{ rpz_new_domain}}        CNAME       ."
+        line: "*.{{ rpz_new_domain}}        A       127.0.0.1"
         state: present
         backup: yes
       register: new_zone_record
