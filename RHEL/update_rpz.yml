@@ -29,8 +29,8 @@
 
     - name: Reload bind named
       shell: systemctl reload named
-      when: new_zone_record == "true"
+      when: new_zone_record.changed == "true"
 
     - name: Move old RPZ zone files to diferent path
       shell: mv {{ rpz_zone }}.* /var/named/data/old/ 
-      when: new_zone_record == "true"
+      when: new_zone_record.changed == "true"
