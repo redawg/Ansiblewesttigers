@@ -15,13 +15,13 @@
       lineinfile: 
         path: "{{ rpz_zone }}" 
         regexp: '^(.*); serial(.*)$' 
-        line: '                                       {{ todaydate }}; serial'
+        line: '                                       {{ todaydate.stdout }}; serial'
         backrefs: yes
         
     - name: Add the new domain "{{ rpz_new_domain }}" line if it does not exist
       lineinfile:
         path: "{{ rpz_zone }}"
-        line: "*.{{ rpz_new_domain}}    CNAME   ."
+        line: "*.{{ rpz_new_domain}}        CNAME       ."
         state: present
         backup: yes
       register: new_zone_record
