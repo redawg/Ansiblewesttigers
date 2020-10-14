@@ -8,7 +8,7 @@
 
   tasks:
     - name: Get date and time
-      shell: date +%Y%m%d%H%M%S
+      shell: date +%yy%m%d%H%M
       register: todaydate
 
     - name: Replace RPZ zone serial number
