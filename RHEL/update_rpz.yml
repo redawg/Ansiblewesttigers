@@ -29,3 +29,7 @@
     - name: Reload bind named
       shell: service named reload
       register: bind_reload
+
+    - name: Move old RPZ zone files to old path
+      shell: mv "{{ rpz_zone }}.*~" "/var/named/data/old/" 
+      register: todaydate
