@@ -1,8 +1,8 @@
 ---
 - name: Action for specific service
-  hosts: localhost
+  hosts: all
   gather_facts: False
-  connection: local
+  become: True
   vars:
     service_action: ''
     service_name: ''
