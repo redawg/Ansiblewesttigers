@@ -15,7 +15,7 @@
       lineinfile: 
         path: "{{ rpz_zone }}" 
         regexp: '^(.*); serial(.*)$' 
-        line: '                                       {{ todaydate.stdout }}; serial'
+        line: '                                        {{ todaydate.stdout }}; serial'
         backrefs: yes
         
     - name: Add the new domain "{{ rpz_new_domain }}" line if it does not exist
