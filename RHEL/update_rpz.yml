@@ -24,13 +24,9 @@
         line: "*.{{ rpz_new_domain}}        A       127.0.0.1"
         state: present
         backup: yes
-      register: new_zone_record
-    - debug: var=new_zone_record.changed
 
     - name: Reload bind named
       shell: systemctl reload named
-      when: new_zone_record.changed == 'true'
 
     - name: Move old RPZ zone files to diferent path
       shell: mv {{ rpz_zone }}.* /var/named/data/old/ 
-      when: new_zone_record.changed == 'true'
