@@ -1,0 +1,40 @@
+---
+- name: Add Snort rule
+  hosts: snort
+  become: yes
+
+  vars:
+    ids_provider: snort
+
+  tasks:
+    - name: Add snort password attack rule
+      include_role:
+        name: "ansible_security.ids_rule"
+      vars:
+        ids_rule: 'alert tcp any any -> any any (msg:"Attempted /etc/passwd Attack"; uricontent:"/etc/passwd"; classtype:attempted-user; sid:99000004; priority:1; rev:1;)'
+        ids_rules_file: '/etc/snort/rules/local.rules'
+        ids_rule_state: present
+
+    - name: Add snort rule that match a response of phish.opendns.com
+      include_role:
+        name: "ansible_security.ids_rule"
+      vars:
+        ids_rule: 'alert udp any 53 -> $HOME_NET any (msg:"DNS request for a phishing site"; sid:10000001; rev:001; content:"|43 D7 41 85|";)'
+        ids_rules_file: '/etc/snort/rules/local.rules'
+        ids_rule_state: present
+
+    - name: Add snort rule that match a response of adult.opendns.com
+      include_role:
+        name: "ansible_security.ids_rule"
+      vars:
+        ids_rule: 'alert udp any 53 -> $HOME_NET any (msg:"DNS request for adult content"; sid:10000002; rev:001; content:"|43 D7 41 82|";)'
+        ids_rules_file: '/etc/snort/rules/local.rules'
+        ids_rule_state: present
+
+    - name: Add snort rule that match a response of malware.opendns.com
+      include_role:
+        name: "ansible_security.ids_rule"
+      vars:
+        ids_rule: 'alert udp any 53 -> $HOME_NET any (msg:"DNS request for a malware site"; sid:10000003; rev:001; content:"|43 D7 42 95|";)'
+        ids_rules_file: '/etc/snort/rules/local.rules'
+        ids_rule_state: present
