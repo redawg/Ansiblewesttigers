@@ -15,6 +15,14 @@
         ids_rules_file: '/etc/snort/rules/local.rules'
         ids_rule_state: present
 
+    - name: Add snort rule that match a response of DNSCAT DNS traffic
+      include_role:
+        name: "ansible_security.ids_rule"
+      vars:
+        ids_rule: 'alert udp any 53 <> any any (msg: "Possible DNSCat activity" ; sid:1000001 ; content:"dnscat"; )
+        ids_rules_file: '/etc/snort/rules/local.rules'
+        ids_rule_state: present
+
     - name: Add snort rule that match a response of phish.opendns.com, where 43 d7 41 85 is the hexadecimal equivalent of 67.215.65.133 IP
       include_role:
         name: "ansible_security.ids_rule"
