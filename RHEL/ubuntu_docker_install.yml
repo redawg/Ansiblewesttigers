@@ -45,3 +45,4 @@
         command: "{{ default_container_command }}"
         state: present
       with_sequence: count={{ create_containers }}
+...
