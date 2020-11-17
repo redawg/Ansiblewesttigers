@@ -43,3 +43,4 @@
 
     - name: Gathering all results
       command: mail -s "Host {{ansible_host}} performance results" rnunez@redhat.com < /tmp/{{ansible_host}}_performance_analysis.txt
+...
