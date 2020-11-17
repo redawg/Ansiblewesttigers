@@ -4,7 +4,6 @@
   become: true
   become_user: root
   become_method: sudo
-
   tasks:
     - name: Command will trigger dmesg
       shell:
