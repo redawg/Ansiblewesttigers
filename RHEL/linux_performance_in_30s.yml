@@ -42,5 +42,10 @@
         cmd: top -b -n 3 >> /tmp/{{ansible_host}}_performance_analysis.txt
 
     - name: Gathering all results
-      command: mail -s "Host {{ansible_host}} performance results" rnunez@redhat.com < /tmp/{{ansible_host}}_performance_analysis.txt
+      command: cat /tmp/{{ansible_host}}_performance_analysis.txt
+      register: command_output
+    
+    - name: Print file content to console
+      debug:
+        msg: "{{command_output.stdout}}"
 ...
