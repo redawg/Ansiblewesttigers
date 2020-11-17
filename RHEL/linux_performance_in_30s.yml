@@ -40,3 +40,7 @@
     - name: Command will run top -b -n for 3 seconds
       shell:
         cmd: top -b -n 3 >> /tmp/{{ansible_host}}_performance_analysis.txt
+
+    - name: Display results
+      shell:
+        cmd: cat /tmp/{{ansible_host}}_performance_analysis.txt
