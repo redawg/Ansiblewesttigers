@@ -41,11 +41,5 @@
       shell:
         cmd: top -b -n 3 >> /tmp/{{ansible_host}}_performance_analysis.txt
 
-    - name: Gathering all results
-      command: cat /tmp/{{ansible_host}}_performance_analysis.txt
-      register: command_output
-    
-    - name: Print file content to console
-      debug:
-        msg: "{{command_output.stdout}}"
+    - name: Now gather all results from {{ansible_host}}:/tmp/{{ansible_host}}_performance_analysis.txt
 ...
