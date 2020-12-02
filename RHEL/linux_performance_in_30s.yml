@@ -1,10 +1,9 @@
 ---
 - name: Check Linux performance in less than 30 seconds
-  hosts: localhost
+  hosts: all
   become: true
   become_user: root
   become_method: sudo
-
   tasks:
     - name: Command will trigger dmesg
       shell:
@@ -41,3 +40,12 @@
     - name: Command will run top -b -n for 3 seconds
       shell:
         cmd: top -b -n 3 >> /tmp/{{ansible_host}}_performance_analysis.txt
+
+    - name: Now the file /tmp/{{ansible_host}}_performance_analysis.txt is quite large
+      command: echo "Go a head and create a playbook to gather this data" >> /tmp/{{ansible_host}}_performance_analysis.txt
+      register: command_output
+    
+#   - name: Print file content to console
+#      debug: msg="{{item}}"
+#      with_items: "{{command_output.stdout_lines}}"
+...

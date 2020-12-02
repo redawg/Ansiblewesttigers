@@ -1,0 +1,13 @@
+---
+- name: Install packages using DNF
+  hosts: all
+  become: True
+  vars:
+    dnf_package: ''
+  tasks:
+    - name: Install "{{ dnf_package }}"
+      dnf:
+        name: "{{ dnf_package }}"
+        state: present
+        update_cache: True
+...

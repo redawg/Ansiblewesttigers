@@ -13,3 +13,4 @@
       - name: Set timezone when is not America/Los_Angeles
         shell: timedatectl set-timezone America/Los_Angeles
         when: TimeZoneOUT.stdout != 'America/Los_Angeles'
+...

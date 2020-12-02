@@ -1,0 +1,32 @@
+---
+- hosts: all
+  become: true
+  become_user: root
+  vars:
+    rpz_zone: '/var/named/db.rpz.local'
+    rpz_new_domain: ''
+
+  tasks:
+    - name: Get date and time
+      shell: date +%y%m%d%H%M
+      register: todaydate
+
+    - name: Replace RPZ zone serial number
+      lineinfile: 
+        path: "{{ rpz_zone }}" 
+        regexp: '^(.*); serial(.*)$' 
+        line: '                                        {{ todaydate.stdout }}; serial'
+        backrefs: yes
+        
+    - name: Add the new domain "{{ rpz_new_domain }}" line if it does not exist
+      lineinfile:
+        path: "{{ rpz_zone }}"
+        line: "*.{{ rpz_new_domain}}        A       127.0.0.1"
+        state: present
+        backup: yes
+
+    - name: Reload bind named
+      shell: systemctl reload named
+
+    - name: Move old RPZ zone files to diferent path
+      shell: mv {{ rpz_zone }}.* /var/named/data/old/ 
