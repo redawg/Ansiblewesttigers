@@ -1,0 +1,18 @@
+---
+- name: Play to create new user and upload key
+  hosts: all
+  gather_facts: false
+  connection: network_cli
+  #vars:
+    #ansible_network_os: ios
+
+  tasks:
+
+  - name: Adding new user and uploading key now...
+    ios_user:
+      name: ansible
+      nopassword: True
+      sshkey: "{{ lookup('file', '/incoming/ansible.pub') }}"
+      privilege: 15
+      state: present
+# https://docs.ansible.com/ansible/2.9/modules/ios_user_module.html#ios-user-module
