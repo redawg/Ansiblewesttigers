@@ -1,0 +1,22 @@
+---
+- name: Going into Radius configuration
+  hosts: all
+  gather_facts: False
+  #vars:
+    #first_var: ''
+    #second_var: ''
+
+  tasks:
+    - name: Changing Radius Server ip address
+      ios_config:
+        lines:
+          - no address ipv4 10.1.1.1
+          - address ipv4 10.2.1.1
+        parents: config-radius-server Radius1
+      register: config_output
+    - name: Show {{command}} Output
+      debug:
+        var: config_output
+# https://docs.ansible.com/ansible/2.9/modules/ios_config_module.html
+# https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/sec_usr_rad/configuration/xe-16/sec-usr-rad-xe-16-book/sec-rad-aaa-server-groups.html
+...
