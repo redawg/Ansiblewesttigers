@@ -21,8 +21,8 @@
   - name: create ssh keys for user {{ user }}
     command: echo -e 'y\n'|ssh-keygen -q -t rsa -f /staging/{{ user }}/{{ user }} -C "" -N ""
     become: yes
-    register: output
-  - debug: var=output.stdout_lines
+    #register: output
+  #- debug: var=output.stdout_lines
 
   - name: Adding new user {{ user }} and uploading key now...
     ios_user:
