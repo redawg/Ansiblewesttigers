@@ -22,7 +22,7 @@
   - debug: var=output.stdout_lines
 
 - name: Connecting...
-  hosts: all
+  hosts: cisco
   gather_facts: false
 
   tasks:
