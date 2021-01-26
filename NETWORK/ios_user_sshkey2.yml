@@ -8,7 +8,12 @@
 
   tasks:
 
-  - name: Validate that staging and user directory exists
+  - name: Validate that staging directory exists
+    file:
+      path: /staging
+      state: directory
+
+  - name: create {{ user }} directory
     file:
       path: "/staging/{{ user }}"
       state: directory
