@@ -20,6 +20,7 @@
     command: echo -e 'y\n'|ssh-keygen -q -t rsa -f /staging/{{ user }}/{{ user }} -C "" -N ""
     register: output
   - debug: var=output.stdout_lines
+    become: yes
 
 - name: Connecting...
   hosts: cisco
