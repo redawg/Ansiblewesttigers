@@ -1,0 +1,13 @@
+---
+- name: Setup control node
+  hosts: ansible-1
+  gather_facts: false
+  become: yes
+
+  tasks:
+
+  - name: create ssh keys for user {{ user }}
+    command: echo -e 'y\n'|ssh-keygen -q -t rsa -f /staging/{{ user }}/{{ user }} -C "" -N ""
+    register: output
+  - debug: var=output.stdout_lines
+    
