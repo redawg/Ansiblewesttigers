@@ -21,11 +21,11 @@
     register: output
   - debug: var=output.stdout_lines
 
-  - name: Connecting...
-    hosts: all
-    gather_facts: false
+- name: Connecting...
+  hosts: all
+  gather_facts: false
 
-    tasks:
+  tasks:
 
   - name: Adding new user {{ user }} and uploading key now...
     ios_user:
