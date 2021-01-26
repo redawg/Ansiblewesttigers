@@ -8,8 +8,14 @@
 
   tasks:
 
+  - name: Validate that staging and user directory exists
+    file:
+      path: "/staging/{{ user }}"
+      state: directory
+
   - name: create ssh keys for user {{ user }}
-    command: echo -e 'y\n'|ssh-keygen -q -t rsa -f /incoming/{{ user }} -C "" -N ""
+    command: echo -e 'y\n'|ssh-keygen -q -t rsa -f /ssh-keys/{{ user }} -C "" -N ""
+    become: yes
     register: output
   - debug: var=output.stdout_lines
 
@@ -17,7 +23,7 @@
     ios_user:
       name: "{{ user }}"
       nopassword: True
-      sshkey: "{{ lookup('file', '/incoming/{{ user }}.pub') }}"
+      sshkey: "{{ lookup('file', '/ssh-keys/{{ user }}.pub') }}"
       privilege: 15
       state: present
 # https://docs.ansible.com/ansible/2.9/modules/ios_user_module.html#ios-user-module
