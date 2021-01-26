@@ -24,7 +24,6 @@
 - name: Connecting...
   hosts: cisco
   gather_facts: false
-  become: yes
 
   tasks:
 
@@ -35,4 +34,5 @@
       sshkey: "{{ lookup('file', '/staging/{{ user }}/{{ user }}.pub') }}"
       privilege: 15
       state: present
+    become: yes
 # https://docs.ansible.com/ansible/2.9/modules/ios_user_module.html#ios-user-module
