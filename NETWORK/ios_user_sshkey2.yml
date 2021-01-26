@@ -1,10 +1,8 @@
 ---
-- name: Play to create new user and upload key
-  hosts: all
+- name: Setup control node
+  hosts: ansible-1
   gather_facts: false
-  connection: network_cli
-  #vars:
-    #ansible_network_os: ios
+  become: yes
 
   tasks:
 
@@ -20,9 +18,14 @@
 
   - name: create ssh keys for user {{ user }}
     command: echo -e 'y\n'|ssh-keygen -q -t rsa -f /staging/{{ user }}/{{ user }} -C "" -N ""
-    become: yes
-    #register: output
-  #- debug: var=output.stdout_lines
+    register: output
+  - debug: var=output.stdout_lines
+
+  - name: Connecting...
+    hosts: all
+    gather_facts: false
+
+    tasks:
 
   - name: Adding new user {{ user }} and uploading key now...
     ios_user:
