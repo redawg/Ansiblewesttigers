@@ -24,6 +24,7 @@
 - name: Connecting...
   hosts: cisco
   gather_facts: false
+  become: yes
 
   tasks:
 
