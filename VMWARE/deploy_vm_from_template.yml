@@ -10,6 +10,7 @@
     esxi_server: ''
     DC_name: ''
     vm_name: ''
+    size_gb: ''
     template: ''
     guest_domain: ''
     vm_password: ''
