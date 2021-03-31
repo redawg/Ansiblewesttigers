@@ -15,6 +15,7 @@
     guest_domain: ''
     vm_password: ''
     vm_network: ''
+    ip_address: ''
     state: ''
   
   tasks: 
