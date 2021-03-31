@@ -15,7 +15,6 @@
     guest_domain: ''
     vm_password: ''
     vm_network: ''
-    ip_address: ''
     state: ''
   
   tasks: 
@@ -46,7 +45,7 @@
         networks:
         - name: "{{vm_network}}"
           type: static # Optionally put DHCP and remove the next three lines
-          ip: "{{ ip_address }}"
+          ip: 192.168.0.181
           netmask: 255.255.255.0
           gateway: 192.168.0.1
           wait_for_ip_address: yes
