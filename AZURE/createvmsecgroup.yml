@@ -1,0 +1,18 @@
+---
+  - name: Create Security Group that allows SSH for {{az_vmname}}
+    azure_rm_securitygroup:
+      resource_group: "{{az_rgname}}"
+      name: "{{az_vmname}}{{'_SecGrp'}}"
+      rules:
+        - name: SSH
+          protocol: Tcp
+          destination_port_range: 22
+          access: Allow
+          priority: 1001
+          direction: Inbound
+        
+      tags:
+          created: ansbile
+          delete: never
+          demo: "{{customer}}"
+          use: Demo
