@@ -1,7 +1,6 @@
 ---
 - name: Check Disk space and sent alert
   hosts: all
-#  become: yes
   connection: local
   vars:
      mount_all: []
