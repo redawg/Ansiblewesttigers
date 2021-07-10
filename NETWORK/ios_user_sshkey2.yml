@@ -1,0 +1,39 @@
+---
+- name: Setup control node
+  hosts: ansible-1
+  gather_facts: false
+  become: yes
+
+  tasks:
+
+  - name: Validate that staging directory exists
+    file:
+      path: /staging
+      state: directory
+
+  - name: create {{ user }} directory
+    file:
+      path: "/staging/{{ user }}"
+      state: directory
+
+  - name: create ssh keys for user {{ user }}
+    command: ssh-keygen -q -t rsa -f /staging/{{ user }}/{{ user }} -C "" -N ""
+    register: output
+  - debug: var=output.stdout_lines
+    become: yes
+
+- name: Connecting...
+  hosts: cisco
+  gather_facts: false
+
+  tasks:
+
+  - name: Adding new user {{ user }} and uploading key now...
+    ios_user:
+      name: "{{ user }}"
+      nopassword: True
+      sshkey: "{{ lookup('file', '/staging/{{ user }}/{{ user }}.pub') }}"
+      privilege: 15
+      state: present
+    become: yes
+# https://docs.ansible.com/ansible/2.9/modules/ios_user_module.html#ios-user-module

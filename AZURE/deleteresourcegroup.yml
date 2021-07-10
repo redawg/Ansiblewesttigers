@@ -1,0 +1,17 @@
+---
+  - name: Delete Azure Resource Group
+    hosts: localhost
+    connection: local
+    gather_facts: no
+    vars:
+       az_rgname: ''
+       AZURE_CLIENT_ID: ''
+       AZURE_SECRET: ''
+       AZURE_SUBSCRIPTION_ID: ''
+       AZURE_TENANT: ''
+    tasks:
+      - name: Delete resource group {{az_rgname}}
+        azure_rm_resourcegroup:
+          name: "{{az_rgname}}"
+          force_delete_nonempty: yes
+          state: absent

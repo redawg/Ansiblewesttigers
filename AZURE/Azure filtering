@@ -1,0 +1,4 @@
+ # example of only populating compute instances that have PPD or PRD as tags.
+ exclude_host_filters:
+- '"Environment" not in tags.keys()'
+- tags["Environment"] != "PPD" and tags["Environment"] != "PRD"

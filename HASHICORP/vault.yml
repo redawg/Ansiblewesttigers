@@ -1,0 +1,16 @@
+---
+- name: Show credentials from vault
+  hosts: all
+  gather_facts: false
+  tasks:
+  
+    - name: Display Username from Vault
+      debug:
+        msg: "{{ ansible_user }}"
+        
+    - name: Display Password from Vault
+      debug:
+        msg: "{{ ansible_password }}"
+        
+    - name: Test connection to host
+      ping:    

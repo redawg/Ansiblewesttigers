@@ -1,0 +1,44 @@
+---
+  - name: Create Azure Virtual Machine
+    hosts: localhost
+    connection: local
+    gather_facts: no
+    vars:
+       az_rgname: ''
+       az_vmname: ''
+       az_vmusername: ''
+       customer: ''
+       sshpubkey: ''
+       publiciptype: ''
+       AZURE_CLIENT_ID: ''
+       AZURE_SECRET: ''
+       AZURE_SUBSCRIPTION_ID: ''
+       AZURE_TENANT: ''
+    tasks:
+       - include: createvmsecgroup.yml
+       - include: createvnicwithpublic.yml
+         when: publicipwanted is defined
+       - include: createvnicnopublic.yml
+         when: publicipwanted is undefined
+       - name: Creating Virtual Machine {{az_vmname}} in {{az_rgname}}_net1
+         azure_rm_virtualmachine:
+           resource_group: "{{az_rgname}}"
+           name: "{{az_vmname}}"
+           vm_size: Standard_F2s_v2
+           admin_username: "{{az_vmusername}}"
+           ssh_password_enabled: false
+           ssh_public_keys:
+             - path: "{{'/home/'}}{{az_vmusername}}{{'/.ssh/authorized_keys'}}"
+               key_data: "{{sshpubkey}}"
+           network_interfaces: "{{az_vmname}}{{'_nic'}}"
+           image:
+             offer: rhel-byos
+             publisher: RedHat
+             sku: 'rhel-lvm78'
+             version: latest
+           plan:
+             name: rhel-lvm78
+             product: rhel-byos
+             publisher: redhat
+           tags:
+                Type : "{{tag}}"
