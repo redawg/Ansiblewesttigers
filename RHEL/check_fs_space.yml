@@ -1,5 +1,5 @@
 ---
-- name: Check Disk space and trigger 
+- name: Check Disk space and sent alert
   hosts: all
   become: yes
   connection: local
