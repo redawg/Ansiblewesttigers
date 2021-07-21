@@ -1,0 +1,10 @@
+---
+- name: Check Disk space and trigger 
+  hosts: all
+  become: yes
+  gather_facts: false
+  connection: local
+
+  tasks:
+    - name: Execute Disk_Alert.sh in remote shell.
+      shell: /etc/cron.daily/Disk_Alert.sh
