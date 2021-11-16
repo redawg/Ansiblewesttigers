@@ -1,0 +1,14 @@
+---
+- name: Check Disk space and trigger 
+  hosts: all
+  become: yes
+  gather_facts: false
+
+  tasks:
+    - name: Fetch the Disk_Alert.sh file from the Ansible Tower server
+      run_once: yes
+      fetch: src=/etc/cron.daily/Disk_Alert.sh dest=buffer/ flat=yes
+      when: "{{ inventory_hostname == 'Enter_YOUR_Server_Name_Here' }}"
+
+    - name: Copy the file Ansible Tower Server to corresponding server
+      copy: src=buffer/Disk_Alert.sh dest=/etc/cron.daily/

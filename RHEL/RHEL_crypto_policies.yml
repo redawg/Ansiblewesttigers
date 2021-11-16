@@ -1,0 +1,14 @@
+---
+- hosts: all
+  vars:
+    crypto_value: '' #  FUTURE #DEFAULT, LEGACY, and FIPS:OSPP
+  collections:
+    - redhat.rhel_system_roles
+
+  tasks:
+  - name: Configure crypto policies
+    include_role:
+      name: linux-system-roles.crypto_policies
+    vars:
+      - crypto_policies_policy: "{{ crypto_value }}"
+      - crypto_policies_reboot_ok: true

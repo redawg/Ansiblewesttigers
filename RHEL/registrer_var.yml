@@ -1,0 +1,17 @@
+---
+- name: Get RHEL boot and dmesgs logs and compres into a tar.gz file
+  hosts: all
+  connection: local
+  tasks:
+    - name: Get hostname and register in a variable to use stdout later
+      shell: echo $(hostname)
+      register: device_name
+
+    - name: Execute dmesg command and keep output in a file "/var/log/$hostname-dmesg.out.log"
+      shell: echo $(hostname); dmesg > /var/log/$(hostname)-dmesg.out.log
+
+    - name: Create Logs /tmp/{{device_name.stdout}}.tar.gz of all *log files.
+      archive:
+        path: /var/log/*.log
+        dest: /tmp/{{device_name.stdout}}.tar.gz
+        format: gz
