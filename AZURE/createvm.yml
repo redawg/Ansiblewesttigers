@@ -16,10 +16,10 @@
        AZURE_TENANT: ''
     tasks:
        - include: createvmsecgroup.yml
-       - include: createvnicwithpublic.yml
-         when: publicipwanted is defined
+       #- include: createvnicwithpublic.yml
+         #when: publicipwanted is defined
        - include: createvnicnopublic.yml
-         when: publicipwanted is undefined
+         #when: publicipwanted is undefined
        - name: Creating Virtual Machine {{az_vmname}} in {{az_rgname}}_net1
          azure_rm_virtualmachine:
            resource_group: "{{az_rgname}}"
