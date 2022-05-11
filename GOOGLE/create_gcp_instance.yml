@@ -1,0 +1,70 @@
+---
+- name: Create a GCP instance
+  hosts: localhost
+  vars:
+    gcp_project: linen-jet-264723
+    gcp_cred_kind: serviceaccount
+    disk_name: ''
+    size_gb: ''
+    net_instance: ''
+    instance_name: ''
+    machine_type: ''
+    state: ''
+    region: ''
+
+  tasks:
+    - name: create a disk mapped from RHEL8 image
+      google.cloud.gcp_compute_disk:
+        name: "{{ disk_name }}"
+        size_gb: "{{ size_gb }}"
+        source_image: projects/rhel-cloud/global/images/rhel-8-v20220406
+        zone: us-central1-a #us-west2-a
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        state: "{{ state }}"
+      register: disk
+
+    - name: printing disk info
+      debug:
+        var: disk
+
+    - name: creating the vpc...
+      gcp_compute_network:
+        name: "{{ net_instance }}"
+        auto_create_subnetworks: 'true'
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        state: "{{ state }}"
+      register: network
+    
+    - name: creating IPv4 public IP address
+      gcp_compute_address:
+        name: address-instance
+        region: "{{ region }}"
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        state: "{{ state }}"
+      register: address
+
+    - name: creating the instance
+      gcp_compute_instance:
+        name: "{{ instance_name }}"
+        machine_type: "{{ machine_type }}"
+        disks:
+        - auto_delete: 'true'
+          boot: 'true'
+          source: '{{ disk }}'
+        network_interfaces:
+        - network: "{{ network }}"
+          access_configs:
+          - name: External NAT
+            nat_ip: "{{ address }}"
+            type: ONE_TO_ONE_NAT
+        zone: us-central1-a
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        state: "{{ state }}"
+
+    - name: Show compute instance details 
+      debug:
+        msg: "You instance ip address is {{ address.address }}"

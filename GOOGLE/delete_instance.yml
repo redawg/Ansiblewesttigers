@@ -1,0 +1,16 @@
+---
+- name: Delete a GCP instance
+  hosts: localhost
+  connection: local
+  vars:
+    gcp_project: linen-jet-264723
+    gcp_cred_kind: serviceaccount
+
+  tasks:
+    - name: deleting the instance
+      gcp_compute_instance:
+        name: "{{ instance_name }}"
+        zone: "{{ zone }}"
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        state: absent

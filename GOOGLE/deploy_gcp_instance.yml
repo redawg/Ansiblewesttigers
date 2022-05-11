@@ -1,0 +1,74 @@
+---
+- name: Create a GCP instance
+  hosts: localhost
+  connection: local
+  vars:
+    gcp_project: linen-jet-264723
+    gcp_cred_kind: serviceaccount
+    disk_name: ''
+    size_gb: ''
+    net_instance: ''
+    region: ''
+    instance_name: ''
+    machine_type: ''
+
+  tasks:
+    - name: create a disk mapped from RHEL8 image
+      google.cloud.gcp_compute_disk:
+        name: "{{ disk_name }}"
+        size_gb: "{{ size_gb }}"
+        source_image: projects/rhel-cloud/global/images/rhel-8-v20220406 #rhel-8-v20190905
+        zone: us-central1-a
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        state: present
+      register: disk
+
+    - name: creating the vpc...
+      google.cloud.gcp_compute_network:
+        name: "{{ net_instance }}"
+        auto_create_subnetworks: 'true'
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        state: present
+      register: network 
+
+    - name: network is...
+      debug:
+        var: network
+
+    - name: creating address now...
+      google.cloud.gcp_compute_address:
+        name: address-instance
+        region: "{{ region }}"
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        state: present
+      register: address
+
+    - name: This is the address
+      debug:
+        var: address
+
+    - name: creating the instance
+      google.cloud.gcp_compute_instance:
+        name: "{{ instance_name }}"
+        machine_type: "{{ machine_type }}"
+        disks:
+        - auto_delete: 'true'
+          boot: 'true'
+          source: "{{ disk }}"
+        network_interfaces:
+        - network: "{{ network }}"
+          access_configs:
+          - name: External NAT
+            nat_ip: "{{ address }}"
+            type: ONE_TO_ONE_NAT
+        zone: "{{ zone }}"
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        state: present
+
+    - name: Show IPv4 IP address
+      debug:
+        msg: "The IP address is {{ address.address }}"

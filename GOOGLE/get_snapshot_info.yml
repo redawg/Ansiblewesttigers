@@ -1,0 +1,63 @@
+---
+- name: Get snapshot info
+  hosts: localhost
+  connection: local
+  vars:
+    gcp_project: linen-jet-264723
+    gcp_cred_kind: serviceaccount
+    label: ''
+    zone: ''
+    disk_name: 'disk-mark1'
+    image_age: '1800'
+
+  tasks:
+    - name: get info on a disk
+      gcp_compute_disk_info:
+        zone: us-central1-a
+        filters:
+        - name = "{{ disk_name }}"
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+      register: disk
+
+    - name: Image creationTimestamp set fact
+      set_fact:
+         time_query: "{{ disk.resources[0].creationTimestamp[:19] | replace ('T',' ') }}"
+    - debug:
+        var: time_query
+
+    - name: Covert time query to epoch 
+      set_fact:
+        creation_epoch: "{{ (time_query|to_datetime).strftime('%s') | int }}"
+
+    - name: Calculate time since last image
+      set_fact:
+        time_since: "{{ (ansible_date_time.epoch | int - creation_epoch | int) }}"
+
+    #- debug:
+    #    var: time_since
+
+    #- debug:
+    #    var: creation_epoch 
+    #    verbosity: 2
+
+    #- debug:
+    #    var: ansible_date_time.epoch
+    #    verbosity: 2
+
+    - name: printing disk info
+      debug:
+        var: disk
+        
+    - name: create a snapshot
+      google.cloud.gcp_compute_snapshot:
+        name: snapshot
+        source_disk: "{{ disk }}"
+        zone: us-central1-a
+        labels:
+          my_label: ansible_managed
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        state: present
+    
+      #when: time_since > image_age

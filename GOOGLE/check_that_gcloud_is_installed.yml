@@ -1,0 +1,13 @@
+---
+- name: Getting ready to use gloud in GCP!
+  hosts: localhost
+  connection: local
+
+  tasks:
+    - name: "check if gcloud is present in out system"
+      command: "gcloud version"
+      register : gcloud_output
+
+    - fail :
+        msg : "please install gloud in your machine "
+        when : "gcloud_output is failed"

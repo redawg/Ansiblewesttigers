@@ -1,0 +1,21 @@
+---
+- name: Create a GCP instance
+  hosts: localhost
+  vars:
+    gcp_project: linen-jet-264723
+    gcp_cred_kind: serviceaccount
+    disk_name: ''
+    size_gb: ''
+    state: ''
+
+  tasks:
+    - name: create a disk mapped from RHEL8 image
+      gcp_compute_disk:
+        name: "{{ disk_name }}"
+        size_gb: "{{ size_gb }}"
+        source_image: projects/rhel-cloud/global/images/rhel-8-v20190905
+        zone: us-west2-a
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        state: "{{ state }}"
+      register: disk

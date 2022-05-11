@@ -1,0 +1,45 @@
+---
+- name: Allow TCP ports
+  hosts: localhost
+  gather_facts: false
+  connection: local
+  vars:
+    gcp_project: linen-jet-264723
+    gcp_cred_kind: serviceaccount
+    net_instance: ''
+
+  tasks:
+    - name: open tcp ports
+      google.cloud.gcp_compute_firewall:
+        name: open-tcp-ports
+        network: 
+          selfLink: 'global/networks/network-demo-vpc'
+
+        allowed:
+        - ip_protocol: tcp
+          ports:
+          - '22'
+          - '80'
+          - '443'
+          - '8080'
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        state: "{{ state }}"
+
+    - name: Allow ping
+      google.cloud.gcp_compute_firewall:
+        name: allow-icmp
+        network: 
+          selfLink: 'global/networks/network-demo-vpc'
+
+        allowed:
+        - ip_protocol: icmp
+        #target_tags:
+        #- test-server
+        #- staging-ssh-server
+        #source_tags:
+        #- test-ssh-clients
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        #service_account_file: "/home/mark/linen-jet-264723-729138e47c0f.json"
+        state: "{{ state }}"

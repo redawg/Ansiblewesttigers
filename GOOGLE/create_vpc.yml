@@ -1,0 +1,19 @@
+---
+- name: Create a VPC network
+  hosts: localhost
+  connection: local
+  vars:
+    gcp_project: linen-jet-264723
+    gcp_cred_kind: serviceaccount
+    net_instance: ''
+
+  tasks:  
+    - name: creating the vpc...
+      gcp_compute_network:
+        name: "{{ net_instance }}"
+        auto_create_subnetworks: 'true'
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        state: "{{ state }}"
+      register: network
+        

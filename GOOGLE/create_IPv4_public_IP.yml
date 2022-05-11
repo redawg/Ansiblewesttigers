@@ -1,0 +1,18 @@
+---
+- name: Managing an IPv4 public IP Address
+  hosts: localhost
+  connection: local
+  vars:
+    gcp_project: linen-jet-264723
+    gcp_cred_kind: serviceaccount
+    region: ''
+    state: ''
+
+  tasks:
+    - name: Managing now...
+      gcp_compute_address:
+        name: "{{ address-instance }}"
+        region: "{{ region }}"
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        state: "{{ state }}"

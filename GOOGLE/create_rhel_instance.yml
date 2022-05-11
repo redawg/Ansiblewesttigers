@@ -1,0 +1,47 @@
+---
+- name: Create a GCP instance
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    gcp_project: linen-jet-264723
+    gcp_cred_kind: serviceaccount
+    instance_name: ''
+    machine_type: ''
+    disk: ''
+    network: ''
+    address: ''
+    state: ''
+
+  tasks:
+
+    - name: create a disk mapped from RHEL8 image
+      google.cloud.gcp_compute_disk:
+        name: "{{ disk_name }}"
+        size_gb: "{{ size_gb }}"
+        source_image: projects/rhel-cloud/global/images/rhel-8-v20220406
+        zone: us-central1-a #us-west2-a
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        state: "{{ state }}"
+      register: disk
+
+    - name: creating the instance
+      gcp_compute_instance:
+        name: "{{ instance_name }}"
+        machine_type: "{{ machine_type }}"
+        disks:
+        - auto_delete: 'true'
+          boot: 'true'
+          source: '{{ disk }}'
+        network_interfaces:
+        - network: "{{ network }}"
+          access_configs:
+          - name: External NAT
+            nat_ip: "{{ address }}"
+            type: ONE_TO_ONE_NAT
+        zone: us-central1-a
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        state: "{{ state }}"
+

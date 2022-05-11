@@ -1,0 +1,39 @@
+---
+- name: Create a snapshot
+  hosts: localhost
+  connection: local
+  vars:
+    gcp_project: linen-jet-264723
+    gcp_cred_kind: serviceaccount
+    label: ''
+    zone: ''
+    disk_name: 'disk-mark1'
+
+  tasks:
+    
+    - name: create a disk mapped from RHEL8 image
+      google.cloud.gcp_compute_disk:
+        name: "{{ disk_name }}"
+        size_gb: 30 #"{{ size_gb }}"
+        source_image: projects/rhel-cloud/global/images/rhel-8-v20220406
+        zone: us-central1-a #us-west2-a
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        state: "{{ state }}"
+      register: disk
+
+    - name: printing disk info
+      debug:
+        var: disk
+    
+    - name: create a snapshot
+      google.cloud.gcp_compute_snapshot:
+        name: snapshot
+        source_disk: "{{ disk }}"
+        zone: us-central1-a
+        labels:
+          my_label: ansible_managed
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        state: present
+      #when: (disk.resources[0].creationTimestamp | < 1800)
