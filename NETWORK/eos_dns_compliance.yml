@@ -3,6 +3,7 @@
   hosts: all
 
   vars:
+    dns_domain: "test.domain"
     dns_servers:
       - "192.168.1.10"
       - "192.168.1.11"
