@@ -1,0 +1,55 @@
+---
+- name: Ensure DNS compliance
+  hosts: all
+
+  vars:
+    dns_servers:
+      - "192.168.1.10"
+      - "192.168.1.11"
+
+  tasks:
+    - name: Configure ipv4 configuration
+      arista.eos.eos_command:
+        commands:
+          - "show ip name-server | json"
+          - "show dns domain | json"
+      register: dns_commands
+     
+    - name: Debug v4NameServers
+      ansible.builtin.debug:
+        var: dns_commands['stdout'][0]['v4NameServers']
+    
+    - name: Debug domainName
+      ansible.builtin.debug:
+        var: dns_commands['stdout'][1]['domainName']
+
+    - name: Set servers to remove
+      set_fact:
+        servers_to_remove: "{{ servers_to_remove | default([]) + [ item ] }}"
+      loop: "{{ dns_commands['stdout'][0]['v4NameServers'] }}"
+      when: item not in dns_servers
+    
+    - name: Set servers to add
+      set_fact:
+        servers_to_add: "{{ servers_to_add | default([]) + [ item ] }}"
+      loop: "{{ dns_servers }}"
+      when: item not in dns_commands['stdout'][0]['v4NameServers'] | default([])
+    
+    - name: Remove non-compliant servers
+      arista.eos.eos_config:
+        lines:
+          - "no ip name-server {{ item }}"
+      loop: "{{ servers_to_remove }}"
+      when: servers_to_remove | default([]) | length >= 1
+    
+    - name: Add compliant servers
+      arista.eos.eos_config:
+        lines:
+          - "ip name-server {{ item }}"
+      loop: "{{ servers_to_add }}"
+      when: servers_to_add | default([]) | length >= 1
+    
+    - name: Set dns domain
+      arista.eos.eos_config:
+        lines:
+          - "dns domain {{ dns_domain }}"
