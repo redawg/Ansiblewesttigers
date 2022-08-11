@@ -1,0 +1,44 @@
+---
+- name: Configure Basic interface configuration
+  hosts: all
+
+  vars:
+    interface: ""
+    description: ""
+    enabled: True
+    speed: "10g"
+    mtu: 1500
+
+  tasks:
+    - name: Configure basic interface configuration
+      arista.eos.eos_interfaces:
+        config:
+        - name: "{{ interface }}"
+          description: "{{ description }}"
+          enabled: "{{ enabled }}"
+          speed: "{{ speed }}"
+          mtu: "{{ mtu }}"
+        state: replaced
+      notify:
+        - Upload Interfaces
+
+  handlers:
+    - name: Upload Interfaces
+      ansible.builtin.include_tasks: tower_upload_interfaces.yml
+
+#####################################################################
+### tower_upload_interfaces.yml
+# - name: Gather Interfaces
+#   arista.eos.eos_facts:
+#     gather_subset: interfaces
+
+# - name: PUT interfaces
+#   ansible.builtin.uri:
+#     url: http://tower/api/v2/hosts/<device_being_configured>/variable_data/
+#     user: admin
+#     password: password
+#     method: PUT
+#     body: "{{ ansible_facts['net_interfaces'] }}"
+#     force_basic_auth: yes
+#     status_code: 200
+#     body_format: json
