@@ -1,0 +1,37 @@
+{
+   "network":"{{ networkaddr[0] }}",
+   "comment": "Configured from Automation Controller",
+   "network_view":"default",
+   "extattrs":
+      {"Country":
+         {"value":"{{ country }}"},
+      "Region":
+         {"value":"{{ region }}"},
+      "State": 
+         {"value": "{{ state }}"}
+      },
+   "options":
+      [  
+         {
+            "name": "domain-name",
+            "use_option": true,
+            "value": "lab.test",
+            "vendor_class": "DHCP"
+         },
+         {
+            "name": "domain-name-servers",
+            "num": 6,
+            "use_option": true,
+            "value": "192.168.0.20",
+            "vendor_class": "DHCP"
+         },
+         {
+            "name": "routers",
+            "num": 3,
+            "use_option": true,
+            "value": "{{ networkaddr[0] | ansible.builtin.ipaddr('1') | ansible.builtin.ipaddr('address') }}",
+            "vendor_class": "DHCP"
+         }
+      ],
+      "use_options":true
+}
