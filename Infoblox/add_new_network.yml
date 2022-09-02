@@ -1,0 +1,32 @@
+---
+- name: Add ipv4 network to NIOS
+  hosts: all
+  gather_facts: false
+
+  vars:
+    parent_network: 10.1.0.0/16
+    cidr: 24
+    region: North America
+    country: USA
+    state: CA
+    infoblox_username: admin
+    infoblox_password: infoblox
+    
+  tasks:
+
+    - name: Get next available network from parent
+      ansible.builtin.set_fact:
+        networkaddr: "{{ lookup('community.general.nios_next_network', parent_network, cidr=cidr, provider=provider) }}"
+
+    - name: Register next available network
+      ansible.builtin.uri:
+        url: https://{{ inventory_hostname }}/wapi/v2.1/network?_return_fields%2B=network&_return_as_object=1
+        user: "{{ infoblox_username }}"
+        password: "{{ infoblox_password }}"
+        method: POST
+        body: "{{ lookup('ansible.builtin.template','templates/new_network.j2') }}"
+        force_basic_auth: yes
+        status_code: 201
+        body_format: json
+        validate_certs: false
+      connection: local
