@@ -44,4 +44,6 @@
         ***Template variable example***  
         ---  
         status: present  
+7. [The aws_lamp_install.yml is the seventh playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/aws_lamp_install.yml "aws_lamp_install.yml")  
+
 ### AAP Daily Demo tear down  
