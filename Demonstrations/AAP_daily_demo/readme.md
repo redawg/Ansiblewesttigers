@@ -4,7 +4,7 @@
     -   Your ssh public key must be installed in AWS management console.  The create_instance.yml is expecting a key named {{ vpc_name }}-ssh-key
 ### AAP Daily Demo build up
 **The AAP Daily Demo is an AAP workflow**  
-1. [The create_vpc.yml is the first playbook in the workflow](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/create_vpc.yml "create_vpc.yml")  
+1. [The create_vpc.yml is the first playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/create_vpc.yml "create_vpc.yml")  
         ***Template variable examples***  
         ---  
         vpc_name: zigfreed  
@@ -13,8 +13,17 @@
         user_name: eames  
         alwaysup: false  
         deleteby: eames
-2. [The create_instance.yml is the second playbook in the workflow](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/create_instance.yml "create_instance.yml")  
-        
-        <sup>Template variable examples</sup>
+2. [The create_instance.yml is the second playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/create_instance.yml "create_instance.yml")  
+        ***Template variable examples***  
+        ---  
+        vpc_name: zigfreed  
+        user_name: eames  
+        subnet_name: "{{vpc_name}}_Subnet"  
+        image: ami-0d6d43816a7c20dcf  
+        count: 1  
+        region: us-west-2  
+        assign_public_ip: yes  
+        alwaysup: false  
+        instance_type: t2.micro  
 
 ### AAP Daily Demo tear down  
