@@ -34,6 +34,13 @@
         inventory_id:  
 
         ****Special Note****
-        The inventory is a dynamic inventory
+        The inventory is a dynamic inventory  
+4. [The redhat_subscription_manager.yml is the forth playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/redhat_subscription_manager.yml "redhat_subscription_manager.yml")  
+        ***Template survey variable examples***  
+        ---  
+        username:    
+        password:  
+        tower_url:  
+        inventory_id:  
 
 ### AAP Daily Demo tear down  
