@@ -79,4 +79,9 @@
         ***Template variable example***  
         ---  
         status: absent  
+3.  [The redhat_subscription_manager.yml is the third playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/redhat_subscription_manager.yml "redhat_subscription_manager.yml")  
+        ***Template variable example***  
+        ---  
+        status: absent  
+4.  [The delete_instance.yml is the fourth playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/delete_instance.yml "delete_instance.yml")  
   
