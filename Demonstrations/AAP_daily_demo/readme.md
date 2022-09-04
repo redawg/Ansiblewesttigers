@@ -58,6 +58,7 @@
         smtpserver: smtp.example.com  
         smtp_port:  587  
         ***Template survey variable examples***  
+        ---  
         username:  
         password:  
 
