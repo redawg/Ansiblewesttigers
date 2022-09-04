@@ -3,7 +3,7 @@
     -   An Amazon Web Services account
     -   Your ssh public key must be installed in AWS management console.  The create_instance.yml is expecting a key named {{ vpc_name }}-ssh-key
 ### AAP Daily Demo build up
-**The AAP Daily Demo is an AAP workflow**  
+**The AAP Daily Demo uses an AAP workflow**  
 1. [The create_vpc.yml is the first playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/create_vpc.yml "create_vpc.yml")  
         ***Template variable examples***  
         ---  
@@ -38,6 +38,7 @@
 4. [The redhat_subscription_manager.yml is the forth playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/redhat_subscription_manager.yml "redhat_subscription_manager.yml")  
         ***Template variable example***  
         ---  
-        status: present      
+        status: present  
+5. [The aws_linux_postinstall.yml is the fifth playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/aws_linux_postinstall.yml "aws_linux_postinstall.yml")  
 
 ### AAP Daily Demo tear down  
