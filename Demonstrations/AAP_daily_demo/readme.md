@@ -75,7 +75,7 @@
 
         ****Special Note****
         The inventory used by this playbook must be a dynamic inventory  
-2.  [The redhat_insights.yml is the sixth playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/redhat_insights.yml "redhat_insights.yml")  
+2.  [The redhat_insights.yml is the second playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/redhat_insights.yml "redhat_insights.yml")  
         ***Template variable example***  
         ---  
         status: absent  
