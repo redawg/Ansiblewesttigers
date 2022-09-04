@@ -40,7 +40,7 @@
         ---  
         status: present  
 5. [The aws_linux_postinstall.yml is the fifth playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/aws_linux_postinstall.yml "aws_linux_postinstall.yml")  
-6. [The aws_linux_postinstall.yml is the sixth playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/aws_linux_postinstall.yml "aws_linux_postinstall.yml")  
+6. [The redhat_insights.yml is the sixth playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/redhat_insights.yml "redhat_insights.yml")  
         ***Template variable example***  
         ---  
         status: present  
@@ -74,4 +74,9 @@
         inventory_id:  
 
         ****Special Note****
-        The inventory used by this playbook must be a dynamic inventory    
+        The inventory used by this playbook must be a dynamic inventory  
+2.  [The redhat_insights.yml is the sixth playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/redhat_insights.yml "redhat_insights.yml")  
+        ***Template variable example***  
+        ---  
+        status: absent  
+  
