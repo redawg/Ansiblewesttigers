@@ -36,7 +36,7 @@
         ****Special Note****
         The inventory used by this playbook must be a dynamic inventory  
 4. [The redhat_subscription_manager.yml is the forth playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/redhat_subscription_manager.yml "redhat_subscription_manager.yml")  
-        ***Template survey variable examples***  
+        ***Template variable example***  
         ---  
         status: present      
 
