@@ -45,5 +45,7 @@
         ---  
         status: present  
 7. [The aws_lamp_install.yml is the seventh playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/aws_lamp_install.yml "aws_lamp_install.yml")  
+8. [The deploy_aap_demo_site.yml is the eighth playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/deploy_aap_demo_site.yml "deploy_aap_demo_site.yml")  
+
 
 ### AAP Daily Demo tear down  
