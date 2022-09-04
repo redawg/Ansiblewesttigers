@@ -64,4 +64,14 @@
 
         ****Special Note****
         You need the username and password for the mail exchanger you will use to send the email    
-### AAP Daily Demo tear down  
+### AAP Daily Demo tear down is a workflow that is scheduled to run once a day
+1. [The aws_inventory_sync.yml is the first playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/aws_inventory_sync.yml "aws_inventory_sync.yml")  
+        ***Template survey variable examples***  
+        ---  
+        username:    
+        password:  
+        tower_url:  
+        inventory_id:  
+
+        ****Special Note****
+        The inventory used by this playbook must be a dynamic inventory    
