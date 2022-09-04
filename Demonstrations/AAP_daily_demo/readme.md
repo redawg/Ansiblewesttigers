@@ -14,4 +14,8 @@
         user_name: eames  
         alwaysup: false  
         deleteby: eames  
+    2. [The create_instance.yml is the second playbook in the workflow](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/create_instance.yml "create_instance.yml")  
+        
+        <sup>Template variable examples</sup>
+
 ### AAP Daily Demo tear down  
