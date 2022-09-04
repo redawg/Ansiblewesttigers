@@ -46,6 +46,21 @@
         status: present  
 7. [The aws_lamp_install.yml is the seventh playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/aws_lamp_install.yml "aws_lamp_install.yml")  
 8. [The deploy_aap_demo_site.yml is the eighth playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/deploy_aap_demo_site.yml "deploy_aap_demo_site.yml")  
-9. [The aws_get_instance_info.yml is the ninth playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/aws_get_instance_info.yml "aws_get_instance_info.yml") 
+9. [The aws_get_instance_info.yml is the ninth playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/aws_get_instance_info.yml "aws_get_instance_info.yml")  
+        ***Template variable example***  
+        ---  
+        region: us-west-2  
+        mailfrom: hercules@example.com (Hercules Rocks)  
+        mailto:  
+        - Eric Ames <eric.ames@redhat.com>  
+        bccto:  
+        - Eric Ames <eames@redhat.com>  
+        smtpserver: smtp.example.com  
+        smtp_port:  587  
+        ***Template survey variable examples***  
+        username:  
+        password:  
 
+        ****Special Note****
+        You need the username and password for the mail exchanger you will use to send the email    
 ### AAP Daily Demo tear down  
