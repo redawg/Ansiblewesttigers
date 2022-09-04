@@ -33,4 +33,7 @@
         tower_url:  
         inventory_id:  
 
+        ****Special Note****
+        The inventory is a dynamic inventory
+
 ### AAP Daily Demo tear down  
