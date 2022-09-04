@@ -6,7 +6,7 @@
 **The AAP Daily Demo is an AAP workflow**  
    1. [The create_vpc.yml is the first playbook in the workflow](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/create_vpc.yml "create_vpc.yml")  
         
-        <sup>Template Variables</sup>
+        <sup>Template variable examples</sup>
         ---  
         vpc_name: zigfreed  
         vpc_cidr: 172.16.1.0/24  
