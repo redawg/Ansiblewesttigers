@@ -89,3 +89,10 @@
         region: us-west-2  
         servername: Web Server  
         my_email_address: eames@redhat.com  
+5. [The delete_vpc.yml is the fifth playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/delete_vpc.yml "delete_vpc.yml")  
+        ***Template variable examples***  
+        ---  
+        vpc_name: zigfreed  
+        vpc_cidr: 172.16.1.0/24  
+        region: us-west-2  
+        user_name: hercules  
