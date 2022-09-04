@@ -84,4 +84,8 @@
         ---  
         status: absent  
 4.  [The delete_instance.yml is the fourth playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/delete_instance.yml "delete_instance.yml")  
-  
+        ***Template variable example***  
+        ---  
+        region: us-west-2  
+        servername: Web Server  
+        my_email_address: eames@redhat.com  
