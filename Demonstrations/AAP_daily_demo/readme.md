@@ -41,4 +41,7 @@
         status: present  
 5. [The aws_linux_postinstall.yml is the fifth playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/aws_linux_postinstall.yml "aws_linux_postinstall.yml")  
 6. [The aws_linux_postinstall.yml is the sixth playbook in the workflow.](https://github.com/redawg/Ansiblewesttigers/blob/master/Demonstrations/AAP_daily_demo/aws_linux_postinstall.yml "aws_linux_postinstall.yml")  
+        ***Template variable example***  
+        ---  
+        status: present  
 ### AAP Daily Demo tear down  
