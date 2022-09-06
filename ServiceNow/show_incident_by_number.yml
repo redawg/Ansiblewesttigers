@@ -1,0 +1,11 @@
+---
+- name: Retrieve incidents by number
+  hosts: localhost
+  gather_facts: yes
+
+  tasks:
+
+    - name: Retrieve incidents by number
+      servicenow.itsm.incident_info:
+        number: INC0010001
+      register: result
