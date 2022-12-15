@@ -25,7 +25,7 @@
         data:
           subscription_time: "{{ subscription_time_pre.stdout }}"
   
-    - name: Register and subscribe the system 
+    - name: Register and subscribe the system
       community.general.redhat_subscription:
         username: "{{ username }}"
         password: "{{ password }}"
