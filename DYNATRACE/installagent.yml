@@ -1,0 +1,15 @@
+---
+- name: Download OneAgent installer in specific version to a custom
+    directory with additional OneAgent install parameters. Both linux_other
+    and linux_arm have different user specified by platform args parameter.
+  gather_facts: False
+  hosts: all
+  roles:
+    - role: oneagent
+  vars:
+    oneagent_download_dir: /tmp
+    oneagent_version: 1.199.247.20200714-111723
+    oneagent_install_args:
+      - INSTALL_PATH=/opt/dynatrace
+      - --set-host-group=My.HostGroup_123-456
+      - --set-network-zone=my.network.zone
