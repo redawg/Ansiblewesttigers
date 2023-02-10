@@ -22,7 +22,7 @@
           username: "{{ username }}"
           password: "{{ password }}"
           subject: Ansible Automation Platform (AAP) Daily Demo
-          body: "This server was just built using AAP.  The server will be destroyed at 01:00 AM UTC time.  http://{{ ec2_instance_info.instances[0].public_dns_name }} ssh ec2-user@{{ ec2_instance_info.instances[0].public_dns_name }} -i ~/.ssh/"
+          body: "System {{ ansible_hostname }} has been successfully provisioned using AAP.  The server will be destroyed at 01:00 AM UTC time.  http://{{ ec2_instance_info.instances[0].public_dns_name }} ssh ec2-user@{{ ec2_instance_info.instances[0].public_dns_name }} -i ~/.ssh/"
           from: "{{ mailfrom }}"
           to: "{{ mailto }}"
           bcc: "{{ bccto }}"
