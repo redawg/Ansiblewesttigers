@@ -7,6 +7,7 @@
        ec2_security_group_name: "{{vpc_name}}_SECGRP"
        ec2_ansible_group: "{{user_name}}"
        my_email_address: "{{user_name}}@redhat.com"
+       aws_servername: ""
 
     tasks:
 
@@ -43,7 +44,8 @@
 
     - name: Creating {{count}} AWS VMs in {{region}}
       amazon.aws.ec2_instance:
-        name: "Web Server"
+#        name: "Web Server"
+        name: "{{aws_servername}}"
         region: "{{region}}"
         key_name: "{{ vpc_name}}-ssh-key"
         vpc_subnet_id: "{{vpc_subnet_id}}"
