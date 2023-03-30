@@ -64,7 +64,7 @@
         name: "Network Automation - Restore"
         job_type: "run"
         inventory: "{{ restore_inventory|default('Network Inventory') }}"
-        project: "{{ restore_project|default('Network Toolkit') }}"
+        project: "{{ restore_project|default('Tiger_Project') }}"
         #playbook: "{{ restores_playbook|default('playbooks/network_restore.yml') }}"
         playbook: "{{ restores_playbook|default('network_restore.yml') }}"
         credentials: "{{ restore_credential|default('Network Credential') }}"
