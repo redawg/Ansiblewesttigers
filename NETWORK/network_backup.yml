@@ -65,7 +65,8 @@
         job_type: "run"
         inventory: "{{ restore_inventory|default('Network Inventory') }}"
         project: "{{ restore_project|default('Network Toolkit') }}"
-        playbook: "{{ restores_playbook|default('playbooks/network_restore.yml') }}"
+        #playbook: "{{ restores_playbook|default('playbooks/network_restore.yml') }}"
+        playbook: "{{ restores_playbook|default('network_restore.yml') }}"
         credentials: "{{ restore_credential|default('Network Credential') }}"
         survey_enabled: true
         #survey_spec: "{{ lookup('template', '{{ playbook_dir }}/../network_setup/templates/backup.j2') }}"
