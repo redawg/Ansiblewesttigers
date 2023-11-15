@@ -5,8 +5,8 @@
     iis_state: "" # "present"=install ; "absent"=uninstall 
 
   tasks:
-#    - name: "{{ iis_state }}" IIS Web Server
-    - name: Lets do something with IIS Web Server
+    - name: Hay caramba "{{ iis_state }}" IIS Web Server
+#    - name: Lets do something with IIS Web Server
       win_feature:
         name: Web-Server
         state: "{{ iis_state }}"
