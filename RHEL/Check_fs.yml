@@ -17,13 +17,22 @@
       ansible.builtin.debug:
         msg: "{{ mount_all }} "
 
-    - name: Send email to confirm job status
-      community.general.mail:
-        host: localhost
-        port: 25
-        from: 'root@localhost'
-        to: 'rnunez@gmail.com'
-        subject: "Ansible-report: check_fs '{{ inventory_hostname }}'"
-        body: 'Check AAP'
-      when: mount_all != None
+#    - name: Send email to confirm job status
+#      community.general.mail:
+#        host: localhost
+#        port: 25
+#        from: 'root@localhost'
+#        to: 'rnunez@gmail.com'
+#        subject: "Ansible-report: check_fs '{{ inventory_hostname }}'"
+#        body: 'Check AAP'
+#      when: mount_all != None
+#      delegate_to: localhost
+      
+    - name: Sending an e-mail using Gmail SMTP servers
+      community.general.mail: 
+        host: smtp.gmail.com
+        port: 587
+        to: rnunez@redhat.com
+        subject: Ansible-report 
+        body: System {{ ansible_hostname }} report {{ mount_all }} DFs
       delegate_to: localhost
