@@ -1,6 +1,6 @@
 ---
 - name: Check Disk space and sent alert
-  hosts: '{{ inventory_hostname }}'
+  hosts: all
   connection: local
   vars:
      mount_all: []
