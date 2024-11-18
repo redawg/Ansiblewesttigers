@@ -1,0 +1,29 @@
+---
+- name: Check Disk space and sent alert
+  hosts: '{{ inventory_hostname }}'
+  connection: local
+  vars:
+     mount_all: []
+  tasks:
+
+    - name: Get List of devices higher than 80% .
+      set_fact:
+        mount_all: "{{ mount_all + [{'host':ansible_host,'dev':item.device,'mount':item.mount,'free':(((item.size_available/1024)/1024)/1024)|round(2,'common'),'total':(((item.size_total/1024)/1024)/1024)|round(2,'common')}] }}"
+      when: (item.size_total - item.size_available) > (item.size_total|float * 0.3)
+      with_items: "{{ ansible_mounts | list }}"
+      delegate_to: localhost
+
+    - name: If partition is > 80 %
+      ansible.builtin.debug:
+        msg: "{{ mount_all }} "
+
+    - name: Send email to confirm job status
+      community.general.mail:
+        host: localhost
+        port: 25
+        from: 'root@localhost'
+        to: 'rnunez@gmail.com'
+        subject: "Ansible-report: check_fs '{{ inventory_hostname }}'"
+        body: 'Check AAP'
+      when: mount_all != None
+      delegate_to: localhost
